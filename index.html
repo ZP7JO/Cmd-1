@@ -156,3 +156,196 @@
     opacity: 0.8;
   }
 </style>
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: #050510;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow: hidden;
+    }
+
+    /* نورهای پس زمینه */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.35;
+      z-index: -1;
+    }
+
+    body::before {
+      background: #5865F2;
+      top: -200px;
+      left: -150px;
+      animation: float1 8s ease-in-out infinite alternate;
+    }
+
+    body::after {
+      background: #0077ff;
+      bottom: -200px;
+      right: -150px;
+      animation: float2 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes float1 {
+      to {
+        transform: translate(250px, 180px);
+      }
+    }
+
+    @keyframes float2 {
+      to {
+        transform: translate(-250px, -180px);
+      }
+    }
+
+    /* کارت */
+    .card {
+      position: relative;
+      width: 420px;
+      padding: 60px 40px;
+      text-align: center;
+
+      background: rgba(15, 15, 30, 0.75);
+      backdrop-filter: blur(20px);
+
+      border-radius: 25px;
+
+      box-shadow:
+        0 0 40px rgba(88, 101, 242, 0.25);
+
+      overflow: hidden;
+    }
+
+    /* موج نور دور کارت */
+    .card::before {
+      content: "";
+      position: absolute;
+
+      width: 180%;
+      height: 180%;
+
+      top: -40%;
+      left: -40%;
+
+      background: conic-gradient(
+        transparent,
+        transparent,
+        transparent,
+        #5865F2,
+        #00aaff,
+        transparent
+      );
+
+      animation: rotateLight 4s linear infinite;
+    }
+
+    /* داخل کارت */
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+
+      background: rgba(10, 10, 20, 0.95);
+      border-radius: 23px;
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .discord {
+      font-size: 85px;
+      color: #5865F2;
+
+      filter: drop-shadow(0 0 20px #5865F2);
+
+      animation:
+        spin 2s ease-in-out 1,
+        blink 0.5s ease-in-out 1 2s;
+    }
+
+    .soon {
+      margin-top: 25px;
+      font-size: 45px;
+      font-weight: bold;
+
+      text-shadow:
+        0 0 10px #5865F2,
+        0 0 25px #5865F2;
+    }
+
+    @keyframes rotateLight {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="content">
+
+      <i class="fab fa-discord discord"></i>
+
+      <div class="soon">
+        Soon...
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
