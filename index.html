@@ -2,736 +2,1306 @@
 <html>
 <head>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <style>
+<style>
 
-    * {
-      box-sizing: border-box;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #050510;
-      font-family: Arial, sans-serif;
-      color: white;
-      overflow: hidden;
+body {
+  margin: 0;
+  min-height: 100vh;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+  background: #050510;
 
-    /* =========================
-       BLUE BACKGROUND
-    ========================= */
+  font-family: Arial, sans-serif;
 
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
+  color: white;
 
-      width: 500px;
-      height: 500px;
+  overflow: hidden;
 
-      border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-      filter: blur(120px);
 
-      opacity: 0.35;
+/* =========================
+   BACKGROUND
+========================= */
 
-      z-index: -1;
-    }
+body::before,
+body::after {
 
-    body::before {
-      background: #5865F2;
+  content: "";
 
-      top: -200px;
-      left: -150px;
+  position: fixed;
 
-      animation:
-        float1 8s ease-in-out infinite alternate;
-    }
+  width: 500px;
+  height: 500px;
 
-    body::after {
-      background: #0077ff;
+  border-radius: 50%;
 
-      bottom: -200px;
-      right: -150px;
+  filter: blur(120px);
 
-      animation:
-        float2 10s ease-in-out infinite alternate;
-    }
+  opacity: .35;
 
-    @keyframes float1 {
-      to {
-        transform: translate(250px, 180px);
-      }
-    }
+  z-index: -1;
+}
 
-    @keyframes float2 {
-      to {
-        transform: translate(-250px, -180px);
-      }
-    }
+body::before {
 
-    /* =========================
-       NORMAL CARDS
-    ========================= */
+  background: #5865F2;
 
-    .card {
-      position: absolute;
+  top: -200px;
+  left: -150px;
 
-      width: 500px;
+  animation: float1 8s ease-in-out infinite alternate;
+}
 
-      padding: 60px 50px;
+body::after {
 
-      text-align: center;
+  background: #0077ff;
 
-      background: rgba(15, 15, 30, 0.75);
+  bottom: -200px;
+  right: -150px;
 
-      backdrop-filter: blur(20px);
+  animation: float2 10s ease-in-out infinite alternate;
+}
 
-      border-radius: 25px;
+@keyframes float1 {
 
-      box-shadow:
-        0 0 40px rgba(88, 101, 242, 0.25);
+  to {
+    transform: translate(250px,180px);
+  }
 
-      overflow: hidden;
-    }
+}
 
-    .card::before {
-      content: "";
+@keyframes float2 {
 
-      position: absolute;
+  to {
+    transform: translate(-250px,-180px);
+  }
 
-      width: 180%;
-      height: 180%;
+}
 
-      top: -40%;
-      left: -40%;
 
-      background: conic-gradient(
-        transparent,
-        transparent,
-        transparent,
-        #5865F2,
-        #00aaff,
-        transparent
-      );
+/* =========================
+   CARDS
+========================= */
 
-      animation:
-        rotateLight 4s linear infinite;
-    }
+.card {
 
-    .card::after {
-      content: "";
+  position: absolute;
 
-      position: absolute;
+  width: 500px;
 
-      inset: 2px;
+  padding: 60px 50px;
 
-      background: rgba(10, 10, 20, 0.95);
+  text-align: center;
 
-      border-radius: 23px;
+  background: rgba(15,15,30,.75);
 
-      z-index: 1;
-    }
+  backdrop-filter: blur(20px);
 
-    .content {
-      position: relative;
-      z-index: 2;
-    }
+  border-radius: 25px;
 
-    /* =========================
-       CARD 1
-    ========================= */
+  box-shadow:
+    0 0 40px rgba(88,101,242,.25);
 
-    .card-one {
-      animation:
-        firstCard 1s ease-in-out 4s forwards;
-    }
+  overflow: hidden;
+}
 
-    .discord {
-      font-size: 80px;
+.card::before {
 
-      color: #5865F2;
+  content: "";
 
-      filter:
-        drop-shadow(0 0 10px #5865F2)
-        drop-shadow(0 0 25px #5865F2);
+  position: absolute;
 
-      animation:
-        spin 2s ease-in-out 1,
-        blink 0.5s ease-in-out 1 2s;
-    }
+  width: 180%;
+  height: 180%;
 
-    .welcome {
-      font-size: 45px;
+  top: -40%;
+  left: -40%;
 
-      margin: 25px 0 0;
+  background: conic-gradient(
+    transparent,
+    transparent,
+    transparent,
+    #5865F2,
+    #00aaff,
+    transparent
+  );
 
-      opacity: 0;
+  animation: rotateLight 4s linear infinite;
+}
 
-      text-shadow:
-        0 0 10px #5865F2,
-        0 0 25px #5865F2;
+.card::after {
 
-      animation:
-        showWelcome 0.7s ease forwards 2.5s;
-    }
+  content: "";
 
-    /* =========================
-       CARD 2
-    ========================= */
+  position: absolute;
 
-    .card-two {
-      transform: translateX(120vw);
+  inset: 2px;
 
-      animation:
-        secondCard 1s ease-in-out 4s forwards,
-        secondExit 1s ease-in-out 8s forwards;
-    }
+  background: rgba(10,10,20,.95);
 
-    .iranian-title {
-      font-size: 36px;
+  border-radius: 23px;
 
-      margin: 0;
+  z-index: 1;
+}
 
-      text-shadow:
-        0 0 10px #5865F2,
-        0 0 25px #5865F2;
-    }
+.content {
 
-    .iranian-text {
-      font-size: 20px;
+  position: relative;
 
-      margin-top: 15px;
+  z-index: 2;
+}
 
-      opacity: 0.8;
-    }
 
-    /* =========================
-       CARD 3
-    ========================= */
+/* =========================
+   CARD 1
+========================= */
 
-    .card-three {
-      transform: translateX(120vw);
+.card-one {
 
-      animation:
-        thirdCard 1s ease-in-out 8s forwards,
-        thirdExit 1s ease-in-out 13s forwards;
-    }
+  animation:
+    firstCard 1s ease-in-out 4s forwards;
+}
 
-    .third-title {
-      font-size: 38px;
+.discord {
 
-      margin: 0 0 20px;
+  font-size: 80px;
 
-      text-shadow:
-        0 0 10px #5865F2,
-        0 0 25px #5865F2;
-    }
+  color: #5865F2;
 
-    .third-text {
-      font-size: 20px;
+  filter:
+    drop-shadow(0 0 10px #5865F2)
+    drop-shadow(0 0 25px #5865F2);
 
-      line-height: 1.7;
+  animation:
+    spin 2s ease-in-out 1,
+    blink .5s ease-in-out 1 2s;
+}
 
-      opacity: 0.85;
+.welcome {
 
-      margin: 0;
-    }
+  font-size: 45px;
 
-    /* =========================
-       CARD 4
-    ========================= */
+  margin: 25px 0 0;
 
-    .card-four {
-      transform: translate(120vw, -120vh);
+  opacity: 0;
 
-      animation:
-        fourthCard 1.2s ease-in-out 13s forwards,
-        fourthExit 1s ease-in-out 18s forwards;
-    }
+  text-shadow:
+    0 0 10px #5865F2,
+    0 0 25px #5865F2;
 
-    .discord-info-title {
-      font-size: 36px;
+  animation:
+    showWelcome .7s ease forwards 2.5s;
+}
 
-      margin: 0 0 25px;
 
-      color: #5865F2;
+/* =========================
+   CARD 2
+========================= */
 
-      text-shadow:
-        0 0 10px #5865F2,
-        0 0 25px #5865F2;
-    }
+.card-two {
 
-    .discord-info {
-      font-size: 18px;
+  transform: translateX(120vw);
 
-      line-height: 1.7;
+  animation:
+    secondCard 1s ease-in-out 4s forwards,
+    secondExit 1s ease-in-out 8s forwards;
+}
 
-      opacity: 0.85;
+.iranian-title {
 
-      margin: 12px 0;
-    }
+  font-size: 36px;
 
-    .info-icon {
-      color: #5865F2;
+  margin: 0;
 
-      margin-right: 8px;
-    }
+  text-shadow:
+    0 0 10px #5865F2,
+    0 0 25px #5865F2;
+}
 
-    /* =========================
-       BIG MENU CARD
-    ========================= */
+.iranian-text {
 
-    .big-card {
-      position: absolute;
+  font-size: 20px;
 
-      width: 85%;
+  margin-top: 15px;
 
-      max-width: 1000px;
+  opacity: .8;
+}
 
-      min-height: 550px;
 
-      padding: 60px;
+/* =========================
+   CARD 3
+========================= */
 
-      background: rgba(15, 15, 30, 0.8);
+.card-three {
 
-      backdrop-filter: blur(20px);
+  transform: translateX(120vw);
 
-      border-radius: 30px;
+  animation:
+    thirdCard 1s ease-in-out 8s forwards,
+    thirdExit 1s ease-in-out 13s forwards;
+}
 
-      box-shadow:
-        0 0 50px rgba(88, 101, 242, 0.3);
+.third-title {
 
-      overflow: hidden;
+  font-size: 38px;
 
-      opacity: 0;
+  margin: 0 0 20px;
 
-      transform: translateY(100vh);
+  text-shadow:
+    0 0 10px #5865F2,
+    0 0 25px #5865F2;
+}
 
-      animation:
-        showBigCard 1.2s ease-in-out 18s forwards;
-    }
+.third-text {
 
-    .big-card::before {
-      content: "";
+  font-size: 20px;
 
-      position: absolute;
+  line-height: 1.7;
 
-      width: 180%;
-      height: 180%;
+  opacity: .85;
+}
 
-      top: -40%;
-      left: -40%;
 
-      background: conic-gradient(
-        transparent,
-        transparent,
-        #5865F2,
-        #00aaff,
-        transparent
-      );
+/* =========================
+   CARD 4
+========================= */
 
-      animation:
-        rotateBigLight 5s linear infinite;
-    }
+.card-four {
 
-    .big-card::after {
-      content: "";
+  transform: translate(120vw,-120vh);
 
-      position: absolute;
+  animation:
+    fourthCard 1.2s ease-in-out 13s forwards,
+    fourthExit 1s ease-in-out 18s forwards;
+}
 
-      inset: 3px;
+.discord-info-title {
 
-      background: rgba(10, 10, 20, 0.96);
+  font-size: 36px;
 
-      border-radius: 27px;
+  margin: 0 0 25px;
 
-      z-index: 1;
-    }
+  color: #5865F2;
 
-    .menu-content {
-      position: relative;
+  text-shadow:
+    0 0 10px #5865F2,
+    0 0 25px #5865F2;
+}
 
-      z-index: 2;
+.discord-info {
 
-      text-align: center;
-    }
+  font-size: 18px;
 
-    .menu-content h1 {
-      font-size: 45px;
+  line-height: 1.7;
 
-      margin-bottom: 10px;
+  opacity: .85;
 
-      color: #5865F2;
+  margin: 12px 0;
+}
 
-      text-shadow:
-        0 0 10px #5865F2,
-        0 0 25px #5865F2;
-    }
+.info-icon {
 
-    .menu-subtitle {
-      font-size: 20px;
+  color: #5865F2;
 
-      opacity: 0.7;
+  margin-right: 8px;
+}
 
-      margin-bottom: 45px;
-    }
 
-    /* =========================
-       BUTTONS
-    ========================= */
+/* =========================
+   BIG MENU
+========================= */
 
-    .buttons {
-      display: grid;
+.big-card {
 
-      grid-template-columns: repeat(2, 1fr);
+  position: absolute;
 
-      gap: 25px;
+  width: 85%;
 
-      max-width: 700px;
+  max-width: 1000px;
 
-      margin: auto;
-    }
+  min-height: 550px;
 
-    .buttons button {
-      padding: 22px;
+  padding: 60px;
 
-      border: 1px solid rgba(88, 101, 242, 0.4);
+  background: rgba(15,15,30,.8);
 
-      border-radius: 15px;
+  backdrop-filter: blur(20px);
 
-      background: rgba(88, 101, 242, 0.08);
+  border-radius: 30px;
 
-      color: white;
+  box-shadow:
+    0 0 50px rgba(88,101,242,.3);
 
-      font-size: 20px;
+  overflow: hidden;
 
-      cursor: pointer;
+  opacity: 0;
 
-      transition: 0.3s;
+  transform: translateY(100vh);
 
-      box-shadow:
-        0 0 10px rgba(88, 101, 242, 0.1);
-    }
+  animation:
+    showBigCard 1.2s ease-in-out 18s forwards;
+}
 
-    .buttons button i {
-      color: #5865F2;
+.big-card::before {
 
-      margin-right: 10px;
-    }
+  content: "";
 
-    .buttons button:hover {
-      transform: translateY(-5px);
+  position: absolute;
 
-      background: rgba(88, 101, 242, 0.2);
+  width: 180%;
+  height: 180%;
 
-      border-color: #5865F2;
+  top: -40%;
+  left: -40%;
 
-      box-shadow:
-        0 0 25px rgba(88, 101, 242, 0.5);
-    }
+  background: conic-gradient(
+    transparent,
+    transparent,
+    #5865F2,
+    #00aaff,
+    transparent
+  );
 
-    /* =========================
-       ANIMATIONS
-    ========================= */
+  animation: rotateBigLight 5s linear infinite;
+}
 
-    @keyframes firstCard {
-      to {
-        transform: translateX(-120vw);
-      }
-    }
+.big-card::after {
 
-    @keyframes secondCard {
-      from {
-        transform: translateX(120vw);
-      }
+  content: "";
 
-      to {
-        transform: translateX(0);
-      }
-    }
+  position: absolute;
 
-    @keyframes secondExit {
-      to {
-        transform: translateX(-120vw);
-      }
-    }
+  inset: 3px;
 
-    @keyframes thirdCard {
-      from {
-        transform: translateX(120vw);
-      }
+  background: rgba(10,10,20,.96);
 
-      to {
-        transform: translateX(0);
-      }
-    }
+  border-radius: 27px;
 
-    @keyframes thirdExit {
-      to {
-        transform: translateX(-120vw);
-      }
-    }
+  z-index: 1;
+}
 
-    @keyframes fourthCard {
-      from {
-        transform: translate(120vw, -120vh);
-      }
+.menu-content {
 
-      to {
-        transform: translate(0, 0);
-      }
-    }
+  position: relative;
 
-    @keyframes fourthExit {
-      to {
-        transform: translateX(-120vw);
-      }
-    }
+  z-index: 2;
 
-    @keyframes showBigCard {
-      from {
-        opacity: 0;
+  text-align: center;
+}
 
-        transform: translateY(100vh);
-      }
+.menu-content h1 {
 
-      to {
-        opacity: 1;
+  font-size: 45px;
 
-        transform: translateY(0);
-      }
-    }
+  margin-bottom: 10px;
 
-    @keyframes rotateLight {
-      from {
-        transform: rotate(0deg);
-      }
+  color: #5865F2;
 
-      to {
-        transform: rotate(360deg);
-      }
-    }
+  text-shadow:
+    0 0 10px #5865F2,
+    0 0 25px #5865F2;
+}
 
-    @keyframes rotateBigLight {
-      from {
-        transform: rotate(0deg);
-      }
+.menu-subtitle {
 
-      to {
-        transform: rotate(360deg);
-      }
-    }
+  font-size: 20px;
 
-    @keyframes spin {
-      from {
-        transform: rotate(0deg);
-      }
+  opacity: .7;
 
-      to {
-        transform: rotate(360deg);
-      }
-    }
+  margin-bottom: 45px;
+}
 
-    @keyframes blink {
-      0%, 100% {
-        opacity: 1;
-      }
 
-      50% {
-        opacity: 0;
-      }
-    }
+/* =========================
+   BUTTONS
+========================= */
 
-    @keyframes showWelcome {
-      from {
-        opacity: 0;
+.buttons {
 
-        transform: translateX(-20px);
-      }
+  display: grid;
 
-      to {
-        opacity: 1;
+  grid-template-columns: repeat(2,1fr);
 
-        transform: translateX(0);
-      }
-    }
+  gap: 25px;
 
-  </style>
+  max-width: 700px;
+
+  margin: auto;
+}
+
+.buttons button {
+
+  padding: 22px;
+
+  border: 1px solid rgba(88,101,242,.4);
+
+  border-radius: 15px;
+
+  background: rgba(88,101,242,.08);
+
+  color: white;
+
+  font-size: 20px;
+
+  cursor: pointer;
+
+  transition: .3s;
+
+  box-shadow:
+    0 0 10px rgba(88,101,242,.1);
+}
+
+.buttons button i {
+
+  color: #5865F2;
+
+  margin-right: 10px;
+}
+
+.buttons button:hover {
+
+  transform: translateY(-5px);
+
+  background: rgba(88,101,242,.2);
+
+  border-color: #5865F2;
+
+  box-shadow:
+    0 0 25px rgba(88,101,242,.5);
+}
+
+
+/* =========================
+   CHAT WINDOW
+========================= */
+
+.chat-window {
+
+  position: absolute;
+
+  width: 90%;
+
+  max-width: 1000px;
+
+  height: 650px;
+
+  background: rgba(10,10,25,.92);
+
+  backdrop-filter: blur(25px);
+
+  border: 1px solid rgba(88,101,242,.45);
+
+  border-radius: 30px;
+
+  box-shadow:
+    0 0 50px rgba(88,101,242,.35),
+    inset 0 0 40px rgba(88,101,242,.05);
+
+  z-index: 20;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  opacity: 0;
+
+  transform: scale(.8);
+
+  pointer-events: none;
+
+  transition:
+    .5s ease;
+}
+
+.chat-window.active {
+
+  opacity: 1;
+
+  transform: scale(1);
+
+  pointer-events: auto;
+}
+
+
+/* =========================
+   CHAT HEADER
+========================= */
+
+.chat-header {
+
+  height: 80px;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 0 25px;
+
+  background: rgba(88,101,242,.12);
+
+  border-bottom:
+    1px solid rgba(88,101,242,.25);
+}
+
+.chat-header-icon {
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  background: #5865F2;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  font-size: 22px;
+
+  box-shadow:
+    0 0 20px rgba(88,101,242,.6);
+}
+
+.chat-header-text {
+
+  margin-left: 15px;
+}
+
+.chat-header-text h2 {
+
+  margin: 0;
+
+  font-size: 20px;
+}
+
+.chat-header-text span {
+
+  font-size: 13px;
+
+  color: #7cff9e;
+}
+
+
+/* CLOSE */
+
+.close-chat {
+
+  margin-left: auto;
+
+  border: none;
+
+  background: transparent;
+
+  color: white;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+
+  transition: .3s;
+}
+
+.close-chat:hover {
+
+  background: rgba(255,255,255,.1);
+
+  transform: rotate(90deg);
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+.messages {
+
+  flex: 1;
+
+  padding: 25px;
+
+  overflow-y: auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.message {
+
+  max-width: 70%;
+
+  padding: 13px 17px;
+
+  border-radius: 18px;
+
+  font-size: 15px;
+
+  line-height: 1.5;
+
+  animation:
+    messageIn .3s ease;
+}
+
+.message.bot {
+
+  align-self: flex-start;
+
+  background: rgba(255,255,255,.07);
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  border-bottom-left-radius: 5px;
+}
+
+.message.user {
+
+  align-self: flex-end;
+
+  background: #5865F2;
+
+  box-shadow:
+    0 0 15px rgba(88,101,242,.25);
+
+  border-bottom-right-radius: 5px;
+}
+
+
+/* =========================
+   CHAT INPUT
+========================= */
+
+.chat-input-area {
+
+  padding: 18px;
+
+  display: flex;
+
+  gap: 10px;
+
+  border-top:
+    1px solid rgba(88,101,242,.2);
+
+  background:
+    rgba(0,0,0,.15);
+}
+
+.chat-input {
+
+  flex: 1;
+
+  border: 1px solid rgba(88,101,242,.35);
+
+  outline: none;
+
+  border-radius: 15px;
+
+  padding: 15px;
+
+  background: rgba(255,255,255,.05);
+
+  color: white;
+
+  font-size: 15px;
+
+  transition: .3s;
+}
+
+.chat-input:focus {
+
+  border-color: #5865F2;
+
+  box-shadow:
+    0 0 15px rgba(88,101,242,.2);
+}
+
+.chat-input::placeholder {
+
+  color: rgba(255,255,255,.45);
+}
+
+.send-button {
+
+  width: 55px;
+
+  border: none;
+
+  border-radius: 15px;
+
+  background: #5865F2;
+
+  color: white;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.send-button:hover {
+
+  transform: scale(1.05);
+
+  box-shadow:
+    0 0 20px rgba(88,101,242,.6);
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes firstCard {
+
+  to {
+    transform: translateX(-120vw);
+  }
+}
+
+@keyframes secondCard {
+
+  from {
+    transform: translateX(120vw);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes secondExit {
+
+  to {
+    transform: translateX(-120vw);
+  }
+}
+
+@keyframes thirdCard {
+
+  from {
+    transform: translateX(120vw);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes thirdExit {
+
+  to {
+    transform: translateX(-120vw);
+  }
+}
+
+@keyframes fourthCard {
+
+  from {
+    transform: translate(120vw,-120vh);
+  }
+
+  to {
+    transform: translate(0,0);
+  }
+}
+
+@keyframes fourthExit {
+
+  to {
+    transform: translateX(-120vw);
+  }
+}
+
+@keyframes showBigCard {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(100vh);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotateLight {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateBigLight {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes blink {
+
+  0%,100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes showWelcome {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateX(-20px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+}
+
+@keyframes messageIn {
+
+  from {
+
+    opacity: 0;
+
+    transform: translateY(10px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+</style>
 
 </head>
 
 <body>
 
 
-  <!-- =========================
-       CARD 1
-  ========================= -->
+<!-- =========================
+     CARD 1
+========================= -->
 
-  <div class="card card-one">
+<div class="card card-one">
 
-    <div class="content">
+  <div class="content">
 
-      <i class="fab fa-discord discord"></i>
+    <i class="fab fa-discord discord"></i>
 
-      <h1 class="welcome">
-        Welcome
-      </h1>
+    <h1 class="welcome">
+      Welcome
+    </h1>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     CARD 2
+========================= -->
+
+<div class="card card-two">
+
+  <div class="content">
+
+    <h1 class="iranian-title">
+      Welcome to Iranian Discord
+    </h1>
+
+    <p class="iranian-text">
+      Welcome to our community 🇮🇷
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     CARD 3
+========================= -->
+
+<div class="card card-three">
+
+  <div class="content">
+
+    <h1 class="third-title">
+      Iranian Discord
+    </h1>
+
+    <p class="third-text">
+      Iranian Discord is a website dedicated to
+      helping people who use the Discord platform.
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     CARD 4
+========================= -->
+
+<div class="card card-four">
+
+  <div class="content">
+
+    <h1 class="discord-info-title">
+      About Discord
+    </h1>
+
+    <p class="discord-info">
+      <i class="fab fa-discord info-icon"></i>
+      Discord is a communication platform for communities.
+    </p>
+
+    <p class="discord-info">
+      <i class="fas fa-comments info-icon"></i>
+      Users can communicate through text, voice and video.
+    </p>
+
+    <p class="discord-info">
+      <i class="fas fa-users info-icon"></i>
+      Discord allows people to create and join communities.
+    </p>
+
+    <p class="discord-info">
+      <i class="fas fa-gamepad info-icon"></i>
+      It is widely used by gamers, creators and online communities.
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     BIG MENU
+========================= -->
+
+<div class="big-card">
+
+  <div class="menu-content">
+
+    <h1>
+      Iranian Discord
+    </h1>
+
+    <p class="menu-subtitle">
+      How can we help you?
+    </p>
+
+    <div class="buttons">
+
+      <!-- CHAT BUTTON -->
+
+      <button onclick="openChat()">
+
+        <i class="fas fa-comments"></i>
+
+        Chat
+
+      </button>
+
+
+      <button>
+
+        <i class="fas fa-book"></i>
+
+        Guide
+
+      </button>
+
+
+      <button>
+
+        <i class="fas fa-circle-info"></i>
+
+        About Us
+
+      </button>
+
+
+      <button>
+
+        <i class="fas fa-headset"></i>
+
+        Support
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     CHAT WINDOW
+========================= -->
+
+<div class="chat-window" id="chatWindow">
+
+
+  <!-- HEADER -->
+
+  <div class="chat-header">
+
+    <div class="chat-header-icon">
+
+      <i class="fas fa-comments"></i>
+
+    </div>
+
+    <div class="chat-header-text">
+
+      <h2>
+        Iranian Discord Chat
+      </h2>
+
+      <span>
+        ● Online
+      </span>
+
+    </div>
+
+
+    <button
+      class="close-chat"
+      onclick="closeChat()">
+
+      <i class="fas fa-xmark"></i>
+
+    </button>
+
+  </div>
+
+
+  <!-- MESSAGES -->
+
+  <div
+    class="messages"
+    id="messages">
+
+    <div class="message bot">
+
+      👋 Welcome to Iranian Discord!
+
+      <br>
+
+      How can I help you?
 
     </div>
 
   </div>
 
 
-  <!-- =========================
-       CARD 2
-  ========================= -->
+  <!-- INPUT -->
 
-  <div class="card card-two">
+  <div class="chat-input-area">
 
-    <div class="content">
+    <input
+      id="chatInput"
+      class="chat-input"
+      type="text"
+      placeholder="Write a message..."
+      autocomplete="off"
+    >
 
-      <h1 class="iranian-title">
-        Welcome to Iranian Discord
-      </h1>
+    <button
+      class="send-button"
+      onclick="sendMessage()">
 
-      <p class="iranian-text">
-        Welcome to our community 🇮🇷
-      </p>
+      <i class="fas fa-paper-plane"></i>
 
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       CARD 3
-  ========================= -->
-
-  <div class="card card-three">
-
-    <div class="content">
-
-      <h1 class="third-title">
-        Iranian Discord
-      </h1>
-
-      <p class="third-text">
-        Iranian Discord is a website dedicated to
-        helping people who use the Discord platform.
-      </p>
-
-    </div>
+    </button>
 
   </div>
 
-
-  <!-- =========================
-       CARD 4
-  ========================= -->
-
-  <div class="card card-four">
-
-    <div class="content">
-
-      <h1 class="discord-info-title">
-        About Discord
-      </h1>
-
-      <p class="discord-info">
-        <i class="fab fa-discord info-icon"></i>
-        Discord is a communication platform for communities.
-      </p>
-
-      <p class="discord-info">
-        <i class="fas fa-comments info-icon"></i>
-        Users can communicate through text, voice and video.
-      </p>
-
-      <p class="discord-info">
-        <i class="fas fa-users info-icon"></i>
-        Discord allows people to create and join communities.
-      </p>
-
-      <p class="discord-info">
-        <i class="fas fa-gamepad info-icon"></i>
-        It is widely used by gamers, creators and online communities.
-      </p>
-
-    </div>
-
-  </div>
+</div>
 
 
-  <!-- =========================
-       BIG MENU CARD
-  ========================= -->
+<script>
 
-  <div class="big-card">
+/* =========================
+   OPEN CHAT
+========================= */
 
-    <div class="menu-content">
+function openChat() {
 
-      <h1>
-        Iranian Discord
-      </h1>
+  document
+    .getElementById("chatWindow")
+    .classList
+    .add("active");
 
-      <p class="menu-subtitle">
-        How can we help you?
-      </p>
-
-
-      <div class="buttons">
+}
 
 
-        <!-- CHAT -->
+/* =========================
+   CLOSE CHAT
+========================= */
 
-        <button>
-          <i class="fas fa-comments"></i>
-          Chat
-        </button>
+function closeChat() {
 
+  document
+    .getElementById("chatWindow")
+    .classList
+    .remove("active");
 
-        <!-- GUIDE -->
-
-        <button>
-          <i class="fas fa-book"></i>
-          Guide
-        </button>
+}
 
 
-        <!-- ABOUT -->
+/* =========================
+   SEND MESSAGE
+========================= */
 
-        <button>
-          <i class="fas fa-circle-info"></i>
-          About Us
-        </button>
+function sendMessage() {
+
+  const input =
+    document.getElementById("chatInput");
+
+  const messages =
+    document.getElementById("messages");
+
+  const text =
+    input.value.trim();
 
 
-        <!-- SUPPORT -->
+  if (text === "") {
 
-        <button>
-          <i class="fas fa-headset"></i>
-          Support
-        </button>
+    return;
+
+  }
 
 
-      </div>
+  /* USER MESSAGE */
 
-    </div>
+  const userMessage =
+    document.createElement("div");
 
-  </div>
+  userMessage.className =
+    "message user";
 
+  userMessage.textContent =
+    text;
+
+  messages.appendChild(
+    userMessage
+  );
+
+
+  input.value = "";
+
+
+  messages.scrollTop =
+    messages.scrollHeight;
+
+
+  /* DEMO RESPONSE */
+
+  setTimeout(function() {
+
+    const botMessage =
+      document.createElement("div");
+
+    botMessage.className =
+      "message bot";
+
+    botMessage.textContent =
+      "Thanks for your message! 💙";
+
+    messages.appendChild(
+      botMessage
+    );
+
+
+    messages.scrollTop =
+      messages.scrollHeight;
+
+  }, 700);
+
+}
+
+
+/* ENTER KEY */
+
+document
+  .getElementById("chatInput")
+  .addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+
+      sendMessage();
+
+    }
+
+  });
+
+</script>
 
 </body>
 </html>
