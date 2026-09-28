@@ -1988,3 +1988,104 @@ function showSupport() {
     text-shadow: 0 0 10px rgba(88,101,242,.7);
 }
 </style>
+<button onclick="showGuide()">راهنما</button>
+
+<div id="guide" class="guide">
+  <h2>راهنمای Discord</h2>
+
+  <h3>Discord چیست؟</h3>
+  <p>
+    Discord یک برنامه ارتباطی است که برای گفتگو، تماس صوتی و تصویری
+    و ساختن انجمن‌های آنلاین استفاده می‌شود. در Discord می‌توانید
+    وارد سرورهای مختلف شوید و با اعضای آن‌ها گفتگو کنید.
+  </p>
+
+  <h3>Discord چه چیزی نیست؟</h3>
+  <p>
+    Discord یک شبکه اجتماعی معمولی مثل Instagram نیست و فقط برای
+    پیام‌رسانی ساده ساخته نشده است. Discord بیشتر روی گروه‌ها،
+    انجمن‌ها و ارتباط بین اعضای یک جامعه تمرکز دارد.
+  </p>
+
+  <h3>آموزش نصب Discord</h3>
+
+  <ol>
+    <li>به سایت رسمی Discord بروید.</li>
+    <li>نسخه مناسب دستگاه خود را انتخاب کنید.</li>
+    <li>فایل نصب را دانلود کنید.</li>
+    <li>فایل دانلودشده را اجرا کنید.</li>
+    <li>مراحل نصب را دنبال کنید.</li>
+    <li>بعد از نصب، Discord را باز کنید.</li>
+    <li>اگر حساب دارید وارد شوید و اگر ندارید یک حساب بسازید.</li>
+  </ol>
+
+  <h3>بعد از نصب چه کار کنیم؟</h3>
+  <p>
+    بعد از ورود به Discord می‌توانید با استفاده از لینک دعوت،
+    وارد یک سرور شوید یا یک سرور جدید بسازید. سپس می‌توانید در
+    کانال‌های متنی و صوتی با اعضای سرور ارتباط برقرار کنید.
+  </p>
+
+  <button onclick="hideGuide()">بستن راهنما</button>
+</div>
+
+<style>
+  .guide {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 80%;
+    max-width: 700px;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    padding: 30px;
+
+    background: rgba(10, 10, 20, 0.97);
+    color: white;
+
+    border: 1px solid #5865F2;
+    border-radius: 20px;
+
+    box-shadow: 0 0 40px rgba(88, 101, 242, 0.5);
+
+    z-index: 1000;
+  }
+
+  .guide h2 {
+    color: #5865F2;
+    text-align: center;
+  }
+
+  .guide h3 {
+    color: #8b94ff;
+  }
+
+  .guide p,
+  .guide li {
+    line-height: 1.8;
+  }
+
+  button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #5865F2;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+</style>
+
+<script>
+  function showGuide() {
+    document.getElementById("guide").style.display = "block";
+  }
+
+  function hideGuide() {
+    document.getElementById("guide").style.display = "none";
+  }
+</script>
