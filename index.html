@@ -64,11 +64,10 @@
       }
     }
 
-    /* کارت */
+    /* کارت ها */
 
     .card {
       position: absolute;
-
       width: 500px;
       padding: 70px 50px;
 
@@ -114,7 +113,6 @@
       content: "";
 
       position: absolute;
-
       inset: 2px;
 
       background: rgba(10, 10, 20, 0.95);
@@ -166,7 +164,8 @@
 
     .card-two {
       transform: translateX(120vw);
-      animation: secondCard 1s ease-in-out 4s forwards;
+      animation: secondCard 1s ease-in-out 4s forwards,
+                 secondExit 1s ease-in-out 8s forwards;
     }
 
     .iranian-title {
@@ -184,6 +183,29 @@
       opacity: 0.8;
     }
 
+    /* کارت سوم */
+
+    .card-three {
+      transform: translateX(120vw);
+      animation: thirdCard 1s ease-in-out 8s forwards;
+    }
+
+    .third-title {
+      font-size: 38px;
+      margin: 0 0 20px;
+
+      text-shadow:
+        0 0 10px #5865F2,
+        0 0 25px #5865F2;
+    }
+
+    .third-text {
+      font-size: 20px;
+      line-height: 1.7;
+      opacity: 0.85;
+      margin: 0;
+    }
+
     /* انیمیشن کارت ها */
 
     @keyframes firstCard {
@@ -193,12 +215,32 @@
     }
 
     @keyframes secondCard {
+      from {
+        transform: translateX(120vw);
+      }
+
       to {
         transform: translateX(0);
       }
     }
 
-    /* چرخش نور */
+    @keyframes secondExit {
+      to {
+        transform: translateX(-120vw);
+      }
+    }
+
+    @keyframes thirdCard {
+      from {
+        transform: translateX(120vw);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    /* نور */
 
     @keyframes rotateLight {
       from {
@@ -210,7 +252,7 @@
       }
     }
 
-    /* چرخش Discord */
+    /* چرخش دیسکورد */
 
     @keyframes spin {
       from {
@@ -283,6 +325,26 @@
 
       <p class="iranian-text">
         Welcome to our community 🇮🇷
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- کارت سوم -->
+
+  <div class="card card-three">
+
+    <div class="content">
+
+      <h1 class="third-title">
+        Iranian Discord
+      </h1>
+
+      <p class="third-text">
+        Iranian Discord is a website dedicated to
+        helping people who use the Discord platform.
       </p>
 
     </div>
