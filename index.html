@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Discord & Icons -->
+  <!-- Font Awesome -->
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -29,33 +29,44 @@
     }
 
     /* =========================
-       BLUE BACKGROUND LIGHT
+       BLUE BACKGROUND
     ========================= */
 
     body::before,
     body::after {
       content: "";
       position: fixed;
+
       width: 500px;
       height: 500px;
+
       border-radius: 50%;
+
       filter: blur(120px);
+
       opacity: 0.35;
+
       z-index: -1;
     }
 
     body::before {
       background: #5865F2;
+
       top: -200px;
       left: -150px;
-      animation: float1 8s ease-in-out infinite alternate;
+
+      animation:
+        float1 8s ease-in-out infinite alternate;
     }
 
     body::after {
       background: #0077ff;
+
       bottom: -200px;
       right: -150px;
-      animation: float2 10s ease-in-out infinite alternate;
+
+      animation:
+        float2 10s ease-in-out infinite alternate;
     }
 
     @keyframes float1 {
@@ -76,12 +87,15 @@
 
     .card {
       position: absolute;
+
       width: 500px;
+
       padding: 60px 50px;
 
       text-align: center;
 
       background: rgba(15, 15, 30, 0.75);
+
       backdrop-filter: blur(20px);
 
       border-radius: 25px;
@@ -92,10 +106,9 @@
       overflow: hidden;
     }
 
-    /* Moving light around cards */
-
     .card::before {
       content: "";
+
       position: absolute;
 
       width: 180%;
@@ -113,13 +126,15 @@
         transparent
       );
 
-      animation: rotateLight 4s linear infinite;
+      animation:
+        rotateLight 4s linear infinite;
     }
 
     .card::after {
       content: "";
 
       position: absolute;
+
       inset: 2px;
 
       background: rgba(10, 10, 20, 0.95);
@@ -145,6 +160,7 @@
 
     .discord {
       font-size: 80px;
+
       color: #5865F2;
 
       filter:
@@ -158,6 +174,7 @@
 
     .welcome {
       font-size: 45px;
+
       margin: 25px 0 0;
 
       opacity: 0;
@@ -184,6 +201,7 @@
 
     .iranian-title {
       font-size: 36px;
+
       margin: 0;
 
       text-shadow:
@@ -193,7 +211,9 @@
 
     .iranian-text {
       font-size: 20px;
+
       margin-top: 15px;
+
       opacity: 0.8;
     }
 
@@ -211,6 +231,7 @@
 
     .third-title {
       font-size: 38px;
+
       margin: 0 0 20px;
 
       text-shadow:
@@ -220,8 +241,11 @@
 
     .third-text {
       font-size: 20px;
+
       line-height: 1.7;
+
       opacity: 0.85;
+
       margin: 0;
     }
 
@@ -239,6 +263,7 @@
 
     .discord-info-title {
       font-size: 36px;
+
       margin: 0 0 25px;
 
       color: #5865F2;
@@ -250,13 +275,17 @@
 
     .discord-info {
       font-size: 18px;
+
       line-height: 1.7;
+
       opacity: 0.85;
+
       margin: 12px 0;
     }
 
     .info-icon {
       color: #5865F2;
+
       margin-right: 8px;
     }
 
@@ -268,7 +297,9 @@
       position: absolute;
 
       width: 85%;
+
       max-width: 1000px;
+
       min-height: 550px;
 
       padding: 60px;
@@ -291,8 +322,6 @@
       animation:
         showBigCard 1.2s ease-in-out 18s forwards;
     }
-
-    /* Big card light */
 
     .big-card::before {
       content: "";
@@ -333,6 +362,7 @@
 
     .menu-content {
       position: relative;
+
       z-index: 2;
 
       text-align: center;
@@ -340,6 +370,7 @@
 
     .menu-content h1 {
       font-size: 45px;
+
       margin-bottom: 10px;
 
       color: #5865F2;
@@ -351,7 +382,9 @@
 
     .menu-subtitle {
       font-size: 20px;
+
       opacity: 0.7;
+
       margin-bottom: 45px;
     }
 
@@ -394,6 +427,7 @@
 
     .buttons button i {
       color: #5865F2;
+
       margin-right: 10px;
     }
 
@@ -450,8 +484,6 @@
       }
     }
 
-    /* Card 4: from top-right */
-
     @keyframes fourthCard {
       from {
         transform: translate(120vw, -120vh);
@@ -468,21 +500,19 @@
       }
     }
 
-    /* Big card */
-
     @keyframes showBigCard {
       from {
         opacity: 0;
+
         transform: translateY(100vh);
       }
 
       to {
         opacity: 1;
+
         transform: translateY(0);
       }
     }
-
-    /* Lights */
 
     @keyframes rotateLight {
       from {
@@ -504,8 +534,6 @@
       }
     }
 
-    /* Discord spin */
-
     @keyframes spin {
       from {
         transform: rotate(0deg);
@@ -515,8 +543,6 @@
         transform: rotate(360deg);
       }
     }
-
-    /* Blink */
 
     @keyframes blink {
       0%, 100% {
@@ -528,16 +554,16 @@
       }
     }
 
-    /* Welcome */
-
     @keyframes showWelcome {
       from {
         opacity: 0;
+
         transform: translateX(-20px);
       }
 
       to {
         opacity: 1;
+
         transform: translateX(0);
       }
     }
@@ -548,7 +574,10 @@
 
 <body>
 
-  <!-- CARD 1 -->
+
+  <!-- =========================
+       CARD 1
+  ========================= -->
 
   <div class="card card-one">
 
@@ -565,7 +594,9 @@
   </div>
 
 
-  <!-- CARD 2 -->
+  <!-- =========================
+       CARD 2
+  ========================= -->
 
   <div class="card card-two">
 
@@ -584,7 +615,9 @@
   </div>
 
 
-  <!-- CARD 3 -->
+  <!-- =========================
+       CARD 3
+  ========================= -->
 
   <div class="card card-three">
 
@@ -604,7 +637,9 @@
   </div>
 
 
-  <!-- CARD 4 -->
+  <!-- =========================
+       CARD 4
+  ========================= -->
 
   <div class="card card-four">
 
@@ -639,7 +674,9 @@
   </div>
 
 
-  <!-- BIG MENU CARD -->
+  <!-- =========================
+       BIG MENU CARD
+  ========================= -->
 
   <div class="big-card">
 
@@ -653,33 +690,48 @@
         How can we help you?
       </p>
 
+
       <div class="buttons">
 
+
+        <!-- CHAT -->
+
         <button>
-          <i class="fas fa-circle-question"></i>
-          Questions
+          <i class="fas fa-comments"></i>
+          Chat
         </button>
+
+
+        <!-- GUIDE -->
 
         <button>
           <i class="fas fa-book"></i>
           Guide
         </button>
 
+
+        <!-- ABOUT -->
+
         <button>
           <i class="fas fa-circle-info"></i>
           About Us
         </button>
+
+
+        <!-- SUPPORT -->
 
         <button>
           <i class="fas fa-headset"></i>
           Support
         </button>
 
+
       </div>
 
     </div>
 
   </div>
+
 
 </body>
 </html>
