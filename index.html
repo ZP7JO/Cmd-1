@@ -2,6 +2,10 @@
 <html>
 <head>
 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Discord & Icons -->
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -32,36 +36,26 @@
     body::after {
       content: "";
       position: fixed;
-
       width: 500px;
       height: 500px;
-
       border-radius: 50%;
-
       filter: blur(120px);
       opacity: 0.35;
-
       z-index: -1;
     }
 
     body::before {
       background: #5865F2;
-
       top: -200px;
       left: -150px;
-
-      animation:
-        float1 8s ease-in-out infinite alternate;
+      animation: float1 8s ease-in-out infinite alternate;
     }
 
     body::after {
       background: #0077ff;
-
       bottom: -200px;
       right: -150px;
-
-      animation:
-        float2 10s ease-in-out infinite alternate;
+      animation: float2 10s ease-in-out infinite alternate;
     }
 
     @keyframes float1 {
@@ -76,22 +70,18 @@
       }
     }
 
-
     /* =========================
-       CARDS
+       NORMAL CARDS
     ========================= */
 
     .card {
       position: absolute;
-
       width: 500px;
-
       padding: 60px 50px;
 
       text-align: center;
 
       background: rgba(15, 15, 30, 0.75);
-
       backdrop-filter: blur(20px);
 
       border-radius: 25px;
@@ -102,14 +92,10 @@
       overflow: hidden;
     }
 
-
-    /* =========================
-       MOVING LIGHT AROUND CARD
-    ========================= */
+    /* Moving light around cards */
 
     .card::before {
       content: "";
-
       position: absolute;
 
       width: 180%;
@@ -127,16 +113,13 @@
         transparent
       );
 
-      animation:
-        rotateLight 4s linear infinite;
+      animation: rotateLight 4s linear infinite;
     }
-
 
     .card::after {
       content: "";
 
       position: absolute;
-
       inset: 2px;
 
       background: rgba(10, 10, 20, 0.95);
@@ -146,13 +129,10 @@
       z-index: 1;
     }
 
-
     .content {
       position: relative;
-
       z-index: 2;
     }
-
 
     /* =========================
        CARD 1
@@ -163,10 +143,8 @@
         firstCard 1s ease-in-out 4s forwards;
     }
 
-
     .discord {
       font-size: 80px;
-
       color: #5865F2;
 
       filter:
@@ -178,10 +156,8 @@
         blink 0.5s ease-in-out 1 2s;
     }
 
-
     .welcome {
       font-size: 45px;
-
       margin: 25px 0 0;
 
       opacity: 0;
@@ -194,13 +170,11 @@
         showWelcome 0.7s ease forwards 2.5s;
     }
 
-
     /* =========================
        CARD 2
     ========================= */
 
     .card-two {
-
       transform: translateX(120vw);
 
       animation:
@@ -208,11 +182,8 @@
         secondExit 1s ease-in-out 8s forwards;
     }
 
-
     .iranian-title {
-
       font-size: 36px;
-
       margin: 0;
 
       text-shadow:
@@ -220,23 +191,17 @@
         0 0 25px #5865F2;
     }
 
-
     .iranian-text {
-
       font-size: 20px;
-
       margin-top: 15px;
-
       opacity: 0.8;
     }
-
 
     /* =========================
        CARD 3
     ========================= */
 
     .card-three {
-
       transform: translateX(120vw);
 
       animation:
@@ -244,11 +209,8 @@
         thirdExit 1s ease-in-out 13s forwards;
     }
 
-
     .third-title {
-
       font-size: 38px;
-
       margin: 0 0 20px;
 
       text-shadow:
@@ -256,36 +218,27 @@
         0 0 25px #5865F2;
     }
 
-
     .third-text {
-
       font-size: 20px;
-
       line-height: 1.7;
-
       opacity: 0.85;
-
       margin: 0;
     }
-
 
     /* =========================
        CARD 4
     ========================= */
 
     .card-four {
-
       transform: translate(120vw, -120vh);
 
       animation:
-        fourthCard 1.2s ease-in-out 13s forwards;
+        fourthCard 1.2s ease-in-out 13s forwards,
+        fourthExit 1s ease-in-out 18s forwards;
     }
 
-
     .discord-info-title {
-
       font-size: 36px;
-
       margin: 0 0 25px;
 
       color: #5865F2;
@@ -295,42 +248,177 @@
         0 0 25px #5865F2;
     }
 
-
     .discord-info {
-
       font-size: 18px;
-
       line-height: 1.7;
-
       opacity: 0.85;
-
       margin: 12px 0;
     }
 
-
     .info-icon {
-
       color: #5865F2;
-
       margin-right: 8px;
     }
 
+    /* =========================
+       BIG MENU CARD
+    ========================= */
+
+    .big-card {
+      position: absolute;
+
+      width: 85%;
+      max-width: 1000px;
+      min-height: 550px;
+
+      padding: 60px;
+
+      background: rgba(15, 15, 30, 0.8);
+
+      backdrop-filter: blur(20px);
+
+      border-radius: 30px;
+
+      box-shadow:
+        0 0 50px rgba(88, 101, 242, 0.3);
+
+      overflow: hidden;
+
+      opacity: 0;
+
+      transform: translateY(100vh);
+
+      animation:
+        showBigCard 1.2s ease-in-out 18s forwards;
+    }
+
+    /* Big card light */
+
+    .big-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 180%;
+      height: 180%;
+
+      top: -40%;
+      left: -40%;
+
+      background: conic-gradient(
+        transparent,
+        transparent,
+        #5865F2,
+        #00aaff,
+        transparent
+      );
+
+      animation:
+        rotateBigLight 5s linear infinite;
+    }
+
+    .big-card::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 3px;
+
+      background: rgba(10, 10, 20, 0.96);
+
+      border-radius: 27px;
+
+      z-index: 1;
+    }
+
+    .menu-content {
+      position: relative;
+      z-index: 2;
+
+      text-align: center;
+    }
+
+    .menu-content h1 {
+      font-size: 45px;
+      margin-bottom: 10px;
+
+      color: #5865F2;
+
+      text-shadow:
+        0 0 10px #5865F2,
+        0 0 25px #5865F2;
+    }
+
+    .menu-subtitle {
+      font-size: 20px;
+      opacity: 0.7;
+      margin-bottom: 45px;
+    }
 
     /* =========================
-       CARD ANIMATIONS
+       BUTTONS
+    ========================= */
+
+    .buttons {
+      display: grid;
+
+      grid-template-columns: repeat(2, 1fr);
+
+      gap: 25px;
+
+      max-width: 700px;
+
+      margin: auto;
+    }
+
+    .buttons button {
+      padding: 22px;
+
+      border: 1px solid rgba(88, 101, 242, 0.4);
+
+      border-radius: 15px;
+
+      background: rgba(88, 101, 242, 0.08);
+
+      color: white;
+
+      font-size: 20px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+
+      box-shadow:
+        0 0 10px rgba(88, 101, 242, 0.1);
+    }
+
+    .buttons button i {
+      color: #5865F2;
+      margin-right: 10px;
+    }
+
+    .buttons button:hover {
+      transform: translateY(-5px);
+
+      background: rgba(88, 101, 242, 0.2);
+
+      border-color: #5865F2;
+
+      box-shadow:
+        0 0 25px rgba(88, 101, 242, 0.5);
+    }
+
+    /* =========================
+       ANIMATIONS
     ========================= */
 
     @keyframes firstCard {
-
       to {
         transform: translateX(-120vw);
       }
-
     }
-
 
     @keyframes secondCard {
-
       from {
         transform: translateX(120vw);
       }
@@ -338,21 +426,15 @@
       to {
         transform: translateX(0);
       }
-
     }
-
 
     @keyframes secondExit {
-
       to {
         transform: translateX(-120vw);
       }
-
     }
 
-
     @keyframes thirdCard {
-
       from {
         transform: translateX(120vw);
       }
@@ -360,23 +442,17 @@
       to {
         transform: translateX(0);
       }
-
     }
 
-
     @keyframes thirdExit {
-
       to {
         transform: translateX(-120vw);
       }
-
     }
 
-
-    /* کارت چهارم از بالا سمت راست */
+    /* Card 4: from top-right */
 
     @keyframes fourthCard {
-
       from {
         transform: translate(120vw, -120vh);
       }
@@ -384,16 +460,31 @@
       to {
         transform: translate(0, 0);
       }
-
     }
 
+    @keyframes fourthExit {
+      to {
+        transform: translateX(-120vw);
+      }
+    }
 
-    /* =========================
-       LIGHT ANIMATION
-    ========================= */
+    /* Big card */
+
+    @keyframes showBigCard {
+      from {
+        opacity: 0;
+        transform: translateY(100vh);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Lights */
 
     @keyframes rotateLight {
-
       from {
         transform: rotate(0deg);
       }
@@ -401,16 +492,21 @@
       to {
         transform: rotate(360deg);
       }
-
     }
 
+    @keyframes rotateBigLight {
+      from {
+        transform: rotate(0deg);
+      }
 
-    /* =========================
-       DISCORD SPIN
-    ========================= */
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Discord spin */
 
     @keyframes spin {
-
       from {
         transform: rotate(0deg);
       }
@@ -418,16 +514,11 @@
       to {
         transform: rotate(360deg);
       }
-
     }
 
-
-    /* =========================
-       BLINK
-    ========================= */
+    /* Blink */
 
     @keyframes blink {
-
       0%, 100% {
         opacity: 1;
       }
@@ -435,43 +526,29 @@
       50% {
         opacity: 0;
       }
-
     }
 
-
-    /* =========================
-       WELCOME APPEAR
-    ========================= */
+    /* Welcome */
 
     @keyframes showWelcome {
-
       from {
         opacity: 0;
-
-        transform:
-          translateX(-20px);
+        transform: translateX(-20px);
       }
 
       to {
         opacity: 1;
-
-        transform:
-          translateX(0);
+        transform: translateX(0);
       }
-
     }
 
   </style>
 
 </head>
 
-
 <body>
 
-
-  <!-- =========================
-       CARD 1
-  ========================= -->
+  <!-- CARD 1 -->
 
   <div class="card card-one">
 
@@ -488,9 +565,7 @@
   </div>
 
 
-  <!-- =========================
-       CARD 2
-  ========================= -->
+  <!-- CARD 2 -->
 
   <div class="card card-two">
 
@@ -509,9 +584,7 @@
   </div>
 
 
-  <!-- =========================
-       CARD 3
-  ========================= -->
+  <!-- CARD 3 -->
 
   <div class="card card-three">
 
@@ -531,9 +604,7 @@
   </div>
 
 
-  <!-- =========================
-       CARD 4
-  ========================= -->
+  <!-- CARD 4 -->
 
   <div class="card card-four">
 
@@ -544,48 +615,71 @@
       </h1>
 
       <p class="discord-info">
-
         <i class="fab fa-discord info-icon"></i>
-
-        Discord is a communication platform
-        for communities.
-
+        Discord is a communication platform for communities.
       </p>
 
-
       <p class="discord-info">
-
         <i class="fas fa-comments info-icon"></i>
-
-        Users can communicate through
-        text, voice and video.
-
+        Users can communicate through text, voice and video.
       </p>
 
-
       <p class="discord-info">
-
         <i class="fas fa-users info-icon"></i>
-
-        Discord allows people to create
-        and join communities.
-
+        Discord allows people to create and join communities.
       </p>
 
-
       <p class="discord-info">
-
         <i class="fas fa-gamepad info-icon"></i>
-
-        It is widely used by gamers,
-        creators and online communities.
-
+        It is widely used by gamers, creators and online communities.
       </p>
 
     </div>
 
   </div>
 
+
+  <!-- BIG MENU CARD -->
+
+  <div class="big-card">
+
+    <div class="menu-content">
+
+      <h1>
+        Iranian Discord
+      </h1>
+
+      <p class="menu-subtitle">
+        How can we help you?
+      </p>
+
+      <div class="buttons">
+
+        <button>
+          <i class="fas fa-circle-question"></i>
+          Questions
+        </button>
+
+        <button>
+          <i class="fas fa-book"></i>
+          Guide
+        </button>
+
+        <button>
+          <i class="fas fa-circle-info"></i>
+          About Us
+        </button>
+
+        <button>
+          <i class="fas fa-headset"></i>
+          Support
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </body>
 </html>
