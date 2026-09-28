@@ -24,32 +24,44 @@
       align-items: center;
     }
 
-    /* نورهای آبی پس زمینه */
+    /* =========================
+       BLUE BACKGROUND LIGHT
+    ========================= */
 
     body::before,
     body::after {
       content: "";
       position: fixed;
+
       width: 500px;
       height: 500px;
+
       border-radius: 50%;
+
       filter: blur(120px);
       opacity: 0.35;
+
       z-index: -1;
     }
 
     body::before {
       background: #5865F2;
+
       top: -200px;
       left: -150px;
-      animation: float1 8s ease-in-out infinite alternate;
+
+      animation:
+        float1 8s ease-in-out infinite alternate;
     }
 
     body::after {
       background: #0077ff;
+
       bottom: -200px;
       right: -150px;
-      animation: float2 10s ease-in-out infinite alternate;
+
+      animation:
+        float2 10s ease-in-out infinite alternate;
     }
 
     @keyframes float1 {
@@ -64,16 +76,22 @@
       }
     }
 
-    /* کارت ها */
+
+    /* =========================
+       CARDS
+    ========================= */
 
     .card {
       position: absolute;
+
       width: 500px;
-      padding: 70px 50px;
+
+      padding: 60px 50px;
 
       text-align: center;
 
       background: rgba(15, 15, 30, 0.75);
+
       backdrop-filter: blur(20px);
 
       border-radius: 25px;
@@ -84,7 +102,10 @@
       overflow: hidden;
     }
 
-    /* موج نور دور کارت */
+
+    /* =========================
+       MOVING LIGHT AROUND CARD
+    ========================= */
 
     .card::before {
       content: "";
@@ -106,13 +127,16 @@
         transparent
       );
 
-      animation: rotateLight 4s linear infinite;
+      animation:
+        rotateLight 4s linear infinite;
     }
+
 
     .card::after {
       content: "";
 
       position: absolute;
+
       inset: 2px;
 
       background: rgba(10, 10, 20, 0.95);
@@ -122,19 +146,27 @@
       z-index: 1;
     }
 
+
     .content {
       position: relative;
+
       z-index: 2;
     }
 
-    /* کارت اول */
+
+    /* =========================
+       CARD 1
+    ========================= */
 
     .card-one {
-      animation: firstCard 1s ease-in-out 4s forwards;
+      animation:
+        firstCard 1s ease-in-out 4s forwards;
     }
+
 
     .discord {
       font-size: 80px;
+
       color: #5865F2;
 
       filter:
@@ -146,8 +178,10 @@
         blink 0.5s ease-in-out 1 2s;
     }
 
+
     .welcome {
       font-size: 45px;
+
       margin: 25px 0 0;
 
       opacity: 0;
@@ -160,16 +194,25 @@
         showWelcome 0.7s ease forwards 2.5s;
     }
 
-    /* کارت دوم */
+
+    /* =========================
+       CARD 2
+    ========================= */
 
     .card-two {
+
       transform: translateX(120vw);
-      animation: secondCard 1s ease-in-out 4s forwards,
-                 secondExit 1s ease-in-out 8s forwards;
+
+      animation:
+        secondCard 1s ease-in-out 4s forwards,
+        secondExit 1s ease-in-out 8s forwards;
     }
 
+
     .iranian-title {
+
       font-size: 36px;
+
       margin: 0;
 
       text-shadow:
@@ -177,21 +220,35 @@
         0 0 25px #5865F2;
     }
 
+
     .iranian-text {
+
       font-size: 20px;
+
       margin-top: 15px;
+
       opacity: 0.8;
     }
 
-    /* کارت سوم */
+
+    /* =========================
+       CARD 3
+    ========================= */
 
     .card-three {
+
       transform: translateX(120vw);
-      animation: thirdCard 1s ease-in-out 8s forwards;
+
+      animation:
+        thirdCard 1s ease-in-out 8s forwards,
+        thirdExit 1s ease-in-out 13s forwards;
     }
 
+
     .third-title {
+
       font-size: 38px;
+
       margin: 0 0 20px;
 
       text-shadow:
@@ -199,22 +256,81 @@
         0 0 25px #5865F2;
     }
 
+
     .third-text {
+
       font-size: 20px;
+
       line-height: 1.7;
+
       opacity: 0.85;
+
       margin: 0;
     }
 
-    /* انیمیشن کارت ها */
+
+    /* =========================
+       CARD 4
+    ========================= */
+
+    .card-four {
+
+      transform: translate(120vw, -120vh);
+
+      animation:
+        fourthCard 1.2s ease-in-out 13s forwards;
+    }
+
+
+    .discord-info-title {
+
+      font-size: 36px;
+
+      margin: 0 0 25px;
+
+      color: #5865F2;
+
+      text-shadow:
+        0 0 10px #5865F2,
+        0 0 25px #5865F2;
+    }
+
+
+    .discord-info {
+
+      font-size: 18px;
+
+      line-height: 1.7;
+
+      opacity: 0.85;
+
+      margin: 12px 0;
+    }
+
+
+    .info-icon {
+
+      color: #5865F2;
+
+      margin-right: 8px;
+    }
+
+
+    /* =========================
+       CARD ANIMATIONS
+    ========================= */
 
     @keyframes firstCard {
+
       to {
         transform: translateX(-120vw);
       }
+
     }
+
 
     @keyframes secondCard {
+
       from {
         transform: translateX(120vw);
       }
@@ -222,15 +338,21 @@
       to {
         transform: translateX(0);
       }
+
     }
 
+
     @keyframes secondExit {
+
       to {
         transform: translateX(-120vw);
       }
+
     }
 
+
     @keyframes thirdCard {
+
       from {
         transform: translateX(120vw);
       }
@@ -238,11 +360,40 @@
       to {
         transform: translateX(0);
       }
+
     }
 
-    /* نور */
+
+    @keyframes thirdExit {
+
+      to {
+        transform: translateX(-120vw);
+      }
+
+    }
+
+
+    /* کارت چهارم از بالا سمت راست */
+
+    @keyframes fourthCard {
+
+      from {
+        transform: translate(120vw, -120vh);
+      }
+
+      to {
+        transform: translate(0, 0);
+      }
+
+    }
+
+
+    /* =========================
+       LIGHT ANIMATION
+    ========================= */
 
     @keyframes rotateLight {
+
       from {
         transform: rotate(0deg);
       }
@@ -250,11 +401,16 @@
       to {
         transform: rotate(360deg);
       }
+
     }
 
-    /* چرخش دیسکورد */
+
+    /* =========================
+       DISCORD SPIN
+    ========================= */
 
     @keyframes spin {
+
       from {
         transform: rotate(0deg);
       }
@@ -262,11 +418,16 @@
       to {
         transform: rotate(360deg);
       }
+
     }
 
-    /* چشمک */
+
+    /* =========================
+       BLINK
+    ========================= */
 
     @keyframes blink {
+
       0%, 100% {
         opacity: 1;
       }
@@ -274,29 +435,43 @@
       50% {
         opacity: 0;
       }
+
     }
 
-    /* ظاهر شدن Welcome */
+
+    /* =========================
+       WELCOME APPEAR
+    ========================= */
 
     @keyframes showWelcome {
+
       from {
         opacity: 0;
-        transform: translateX(-20px);
+
+        transform:
+          translateX(-20px);
       }
 
       to {
         opacity: 1;
-        transform: translateX(0);
+
+        transform:
+          translateX(0);
       }
+
     }
 
   </style>
 
 </head>
 
+
 <body>
 
-  <!-- کارت اول -->
+
+  <!-- =========================
+       CARD 1
+  ========================= -->
 
   <div class="card card-one">
 
@@ -313,7 +488,9 @@
   </div>
 
 
-  <!-- کارت دوم -->
+  <!-- =========================
+       CARD 2
+  ========================= -->
 
   <div class="card card-two">
 
@@ -332,7 +509,9 @@
   </div>
 
 
-  <!-- کارت سوم -->
+  <!-- =========================
+       CARD 3
+  ========================= -->
 
   <div class="card card-three">
 
@@ -350,6 +529,63 @@
     </div>
 
   </div>
+
+
+  <!-- =========================
+       CARD 4
+  ========================= -->
+
+  <div class="card card-four">
+
+    <div class="content">
+
+      <h1 class="discord-info-title">
+        About Discord
+      </h1>
+
+      <p class="discord-info">
+
+        <i class="fab fa-discord info-icon"></i>
+
+        Discord is a communication platform
+        for communities.
+
+      </p>
+
+
+      <p class="discord-info">
+
+        <i class="fas fa-comments info-icon"></i>
+
+        Users can communicate through
+        text, voice and video.
+
+      </p>
+
+
+      <p class="discord-info">
+
+        <i class="fas fa-users info-icon"></i>
+
+        Discord allows people to create
+        and join communities.
+
+      </p>
+
+
+      <p class="discord-info">
+
+        <i class="fas fa-gamepad info-icon"></i>
+
+        It is widely used by gamers,
+        creators and online communities.
+
+      </p>
+
+    </div>
+
+  </div>
+
 
 </body>
 </html>
