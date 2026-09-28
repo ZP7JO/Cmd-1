@@ -2089,3 +2089,158 @@ function showSupport() {
     document.getElementById("guide").style.display = "none";
   }
 </script>
+<!-- SUPPORT BUTTON -->
+<button class="guide-button" onclick="showSupport()">
+  Support
+</button>
+
+
+<!-- SUPPORT TICKET -->
+<div id="support" class="guide">
+
+  <h2>🎫 Support Ticket</h2>
+
+  <input
+    type="text"
+    id="ticketName"
+    class="ticket-input"
+    placeholder="Your Name"
+  >
+
+  <input
+    type="text"
+    id="ticketDiscord"
+    class="ticket-input"
+    placeholder="Discord ID"
+  >
+
+  <input
+    type="text"
+    id="ticketSubject"
+    class="ticket-input"
+    placeholder="Subject"
+  >
+
+  <textarea
+    id="ticketMessage"
+    class="ticket-input ticket-message"
+    placeholder="Describe your problem..."
+  ></textarea>
+
+  <button
+    class="guide-button"
+    onclick="createTicket()">
+    Create Ticket
+  </button>
+
+  <button
+    class="close-button"
+    onclick="hideSupport()">
+    Close
+  </button>
+
+  <p id="ticketResult"></p>
+
+</div>
+
+
+<style>
+
+  .ticket-input {
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(88,101,242,0.5);
+
+    border-radius: 10px;
+
+    color: white;
+
+    font-size: 15px;
+
+    outline: none;
+  }
+
+  .ticket-input:focus {
+    border-color: #5865F2;
+
+    box-shadow:
+      0 0 10px rgba(88,101,242,0.4);
+  }
+
+  .ticket-input::placeholder {
+    color: rgba(255,255,255,0.5);
+  }
+
+  .ticket-message {
+    height: 120px;
+    resize: none;
+  }
+
+  #ticketResult {
+    color: #8b94ff;
+    margin-top: 15px;
+  }
+
+</style>
+
+
+<script>
+
+  function showSupport() {
+    document.getElementById("support").style.display = "block";
+  }
+
+
+  function hideSupport() {
+    document.getElementById("support").style.display = "none";
+  }
+
+
+  function createTicket() {
+
+    const name =
+      document.getElementById("ticketName").value;
+
+    const discord =
+      document.getElementById("ticketDiscord").value;
+
+    const subject =
+      document.getElementById("ticketSubject").value;
+
+    const message =
+      document.getElementById("ticketMessage").value;
+
+
+    if (!name || !discord || !subject || !message) {
+
+      document.getElementById("ticketResult").innerText =
+        "Please fill in all fields.";
+
+      return;
+    }
+
+
+    const ticketID =
+      Math.floor(1000 + Math.random() * 9000);
+
+
+    document.getElementById("ticketResult").innerText =
+      "Ticket #" + ticketID +
+      " created successfully!";
+
+
+    console.log({
+      TicketID: ticketID,
+      Name: name,
+      DiscordID: discord,
+      Subject: subject,
+      Message: message
+    });
+
+  }
+
+</script>
