@@ -2244,4 +2244,181 @@ function showSupport() {
   }
 
 </script>
-<!-- SERVICES -->
+<!-- SERVICES CARD -->
+
+<div class="services-card">
+
+  <div class="services-content">
+
+    <h2>Services</h2>
+
+    <p class="services-text">
+      Choose a service
+    </p>
+
+    <div class="service-buttons">
+
+      <button class="service-button">
+        <i class="fa-solid fa-server"></i>
+        Server Creation
+      </button>
+
+      <button class="service-button">
+        <i class="fa-solid fa-robot"></i>
+        Bot Creation
+      </button>
+
+      <button class="service-button">
+        <i class="fa-solid fa-gem"></i>
+        Nitro Purchase
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<style>
+
+.services-card {
+  position: relative;
+
+  width: 100%;
+  margin-top: 30px;
+
+  padding: 25px;
+
+  background: rgba(15, 15, 30, 0.85);
+
+  border-radius: 20px;
+
+  border: 1px solid rgba(88, 101, 242, 0.35);
+
+  box-shadow:
+    0 0 25px rgba(88, 101, 242, 0.2);
+
+  overflow: hidden;
+}
+
+.services-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 150%;
+  height: 150%;
+
+  top: -25%;
+  left: -25%;
+
+  background: conic-gradient(
+    transparent,
+    transparent,
+    #5865F2,
+    #00aaff,
+    transparent
+  );
+
+  animation: servicesLight 5s linear infinite;
+}
+
+.services-card::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 2px;
+
+  background: rgba(10, 10, 20, 0.97);
+
+  border-radius: 18px;
+
+  z-index: 1;
+}
+
+.services-content {
+  position: relative;
+
+  z-index: 2;
+
+  text-align: center;
+}
+
+.services-content h2 {
+  margin: 0;
+
+  color: #5865F2;
+
+  font-size: 28px;
+
+  text-shadow:
+    0 0 10px #5865F2;
+}
+
+.services-text {
+  margin: 8px 0 20px;
+
+  opacity: 0.7;
+}
+
+.service-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.service-button {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 11px 16px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background: #5865F2;
+
+  color: white;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+
+  box-shadow:
+    0 0 12px rgba(88, 101, 242, 0.35);
+}
+
+.service-button:hover {
+  transform: translateY(-3px) scale(1.03);
+
+  box-shadow:
+    0 0 22px rgba(88, 101, 242, 0.8);
+}
+
+.service-button i {
+  font-size: 15px;
+}
+
+@keyframes servicesLight {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+</style>
