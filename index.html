@@ -817,6 +817,24 @@ body::after {
             </button>
 
 
+            <button onclick="openShop()">
+
+                <i class="fas fa-store"></i>
+
+                Shop
+
+            </button>
+
+
+            <button onclick="openCommunity()">
+
+                <i class="fab fa-discord"></i>
+
+                Discord Community
+
+            </button>
+
+
             <button onclick="showGuide()">
 
                 <i class="fas fa-book"></i>
@@ -970,6 +988,21 @@ body::after {
 
 
 <script>
+function openShop() {
+    alert("Shop");
+}
+
+
+function openCommunity() {
+
+    window.open(
+        "https://discord.gg/YOURINVITE",
+        "_blank"
+    );
+
+}
+
+
 
 /* =====================================================
    100 DISCORD QUESTIONS
@@ -1969,13 +2002,3 @@ function showSupport() {
 
 </body>
 </html>
-<button onclick="openShop()">
-  <i class="fas fa-store"></i>
-  Shop
-</button>
-
-<script>
-function openShop() {
-  alert("Shop");
-}
-</script>
