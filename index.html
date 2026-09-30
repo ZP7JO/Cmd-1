@@ -1,647 +1,1971 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Iranian Discord</title>
+<title>Iranian Discord</title>
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <style>
+<style>
 
-    * {
-      box-sizing: border-box;
-    }
+/* =========================
+   GLOBAL
+========================= */
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #050509;
-      color: white;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    /* ================= BACKGROUND ================= */
+body {
+    min-height: 100vh;
+    background: #050510;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
 
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      filter: blur(120px);
-      opacity: .35;
-      z-index: -1;
-    }
 
-    body::before {
-      background: #5865F2;
-      top: -200px;
-      left: -150px;
-      animation: float1 8s ease-in-out infinite alternate;
-    }
+/* =========================
+   BACKGROUND
+========================= */
 
-    body::after {
-      background: #0077ff;
-      bottom: -200px;
-      right: -150px;
-      animation: float2 10s ease-in-out infinite alternate;
-    }
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .35;
+    z-index: -2;
+}
 
-    @keyframes float1 {
-      from {
-        transform: translate(0,0);
-      }
+body::before {
+    background: #5865F2;
+    top: -150px;
+    left: -150px;
+}
 
-      to {
-        transform: translate(250px,200px);
-      }
-    }
+body::after {
+    background: #0077ff;
+    right: -150px;
+    bottom: -150px;
+}
 
-    @keyframes float2 {
-      from {
-        transform: translate(0,0);
-      }
 
-      to {
-        transform: translate(-250px,-200px);
-      }
-    }
+/* =========================
+   MAIN
+========================= */
 
-    /* ================= CARDS ================= */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 70px 20px;
+}
 
-    .card {
-      position: absolute;
 
-      width: 500px;
-      max-width: 90%;
+/* =========================
+   CARDS
+========================= */
 
-      padding: 70px 50px;
+.card {
+    position: relative;
+    margin: 30px auto;
+    padding: 40px;
+    max-width: 850px;
 
-      text-align: center;
+    background: rgba(15, 17, 40, .75);
+    backdrop-filter: blur(15px);
 
-      background: rgba(15,15,30,.75);
+    border-radius: 25px;
 
-      backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,.08);
 
-      border-radius: 25px;
+    box-shadow:
+        0 0 30px rgba(88,101,242,.12);
 
-      box-shadow: 0 0 40px rgba(88,101,242,.25);
+    overflow: hidden;
 
-      overflow: hidden;
-    }
+    animation: cardIn 1s ease both;
+}
 
-    .card::before {
-      content: "";
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
 
-      position: absolute;
+    border-radius: 27px;
 
-      width: 180%;
-      height: 180%;
-
-      top: -40%;
-      left: -40%;
-
-      background:
+    background:
         conic-gradient(
-          transparent,
-          transparent,
-          transparent,
-          #5865F2,
-          #00aaff,
-          transparent
+            from 0deg,
+            transparent,
+            #5865F2,
+            transparent,
+            #0077ff,
+            transparent
         );
 
-      animation: rotateLight 4s linear infinite;
+    animation: rotateBorder 6s linear infinite;
+
+    z-index: -1;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: rgba(10,12,30,.95);
+    border-radius: 23px;
+    z-index: -1;
+}
+
+@keyframes rotateBorder {
+    from {
+        transform: rotate(0deg);
     }
 
-    .card::after {
-      content: "";
-
-      position: absolute;
-
-      inset: 2px;
-
-      background: rgba(10,10,20,.95);
-
-      border-radius: 23px;
-
-      z-index: 1;
-    }
-
-    .content {
-      position: relative;
-      z-index: 2;
-    }
-
-    @keyframes rotateLight {
-      from {
-        transform: rotate(0);
-      }
-
-      to {
+    to {
         transform: rotate(360deg);
-      }
     }
+}
 
-    /* ================= FIRST CARD ================= */
-
-    .card-one {
-      top: 50%;
-      left: 50%;
-
-      transform: translate(-50%,-50%);
-
-      animation:
-        firstCard 1s ease-in-out 4s forwards;
-    }
-
-    .card-two {
-      top: 50%;
-      left: 50%;
-
-      transform: translate(120vw,-50%);
-
-      animation:
-        secondCard 1s ease-in-out 4s forwards;
-    }
-
-    @keyframes firstCard {
-      to {
-        transform: translate(-120vw,-50%);
-      }
-    }
-
-    @keyframes secondCard {
-      to {
-        transform: translate(-50%,-50%);
-      }
-    }
-
-    /* ================= DISCORD ICON ================= */
-
-    .discord {
-      font-size: 80px;
-
-      color: #5865F2;
-
-      animation:
-        spin 2s ease-in-out 1,
-        blink .5s ease-in-out 1 2s;
-    }
-
-    @keyframes spin {
-      from {
-        transform: rotate(0);
-      }
-
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
+@keyframes cardIn {
+    from {
         opacity: 0;
-      }
-
+        transform: translateY(50px);
     }
 
-    .welcome {
-      font-size: 45px;
-
-      margin: 0;
-
-      opacity: 0;
-
-      animation:
-        showWelcome .7s ease forwards 2.5s;
-    }
-
-    @keyframes showWelcome {
-
-      from {
-        opacity: 0;
-        transform: translateX(-20px);
-      }
-
-      to {
+    to {
         opacity: 1;
-        transform: translateX(0);
-      }
+        transform: translateY(0);
+    }
+}
 
+
+/* =========================
+   CARD 1
+========================= */
+
+.welcome-card {
+    text-align: center;
+}
+
+.discord-logo {
+    font-size: 90px;
+    color: #5865F2;
+
+    animation:
+        logoSpin 1.5s ease,
+        logoBlink 2.5s ease 1.5s;
+}
+
+@keyframes logoSpin {
+
+    0% {
+        transform: rotate(0deg) scale(.5);
+        opacity: 0;
     }
 
-    /* ================= SECOND CARD ================= */
+    100% {
+        transform: rotate(360deg) scale(1);
+        opacity: 1;
+    }
+}
 
-    .iranian-title {
-      font-size: 36px;
+@keyframes logoBlink {
 
-      margin: 0;
-
-      text-shadow:
-        0 0 10px #5865F2,
-        0 0 25px #5865F2;
+    0%, 100% {
+        opacity: 1;
     }
 
-    .iranian-text {
-      font-size: 20px;
+    50% {
+        opacity: .2;
+    }
+}
 
-      margin-top: 15px;
+.welcome-title {
+    margin-top: 20px;
+    font-size: 42px;
 
-      opacity: .8;
+    opacity: 0;
+
+    animation:
+        showWelcome 1s ease 2.8s forwards;
+}
+
+@keyframes showWelcome {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.card h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: #cfd2ff;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+
+/* =========================
+   ABOUT DISCORD
+========================= */
+
+.about-discord {
+    animation:
+        topRightIn 1.2s ease both;
+}
+
+@keyframes topRightIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translate(250px,-200px)
+            rotate(8deg);
     }
 
-    /* ================= MENU ================= */
+    to {
+        opacity: 1;
+        transform:
+            translate(0,0)
+            rotate(0);
+    }
+}
 
-    .menu-card {
-      margin-top: 30px;
+.discord-facts {
+    margin-top: 20px;
+    padding-left: 20px;
+}
 
-      padding: 22px;
+.discord-facts li {
+    margin: 12px 0;
+    color: #dfe1ff;
+}
 
-      background: rgba(15,15,30,.85);
 
-      border: 1px solid rgba(88,101,242,.35);
+/* =========================
+   MENU
+========================= */
 
-      border-radius: 20px;
+.menu-card {
+    text-align: center;
+}
 
-      box-shadow:
-        0 0 25px rgba(88,101,242,.2);
+.menu-card h2 {
+    margin-bottom: 25px;
+}
 
-      text-align: center;
+.menu {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(180px,1fr));
+
+    gap: 15px;
+}
+
+.menu button {
+    position: relative;
+
+    padding: 18px;
+
+    border: 1px solid rgba(88,101,242,.4);
+
+    border-radius: 15px;
+
+    background:
+        rgba(88,101,242,.1);
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: .3s;
+
+    overflow: hidden;
+}
+
+.menu button i {
+    margin-right: 8px;
+}
+
+.menu button:hover {
+    transform: translateY(-5px);
+
+    background:
+        rgba(88,101,242,.25);
+
+    box-shadow:
+        0 0 25px rgba(88,101,242,.4);
+}
+
+
+/* =========================
+   CHAT AI OVERLAY
+========================= */
+
+.chat-ai {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(0,0,0,.7);
+
+    backdrop-filter:
+        blur(12px);
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9999;
+}
+
+
+/* =========================
+   CHAT BOX
+========================= */
+
+.chat-box {
+
+    width: min(650px,94%);
+
+    height: 720px;
+
+    max-height: 92vh;
+
+    background:
+        rgba(10,12,30,.97);
+
+    border:
+        1px solid rgba(88,101,242,.6);
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 0 50px
+        rgba(88,101,242,.35);
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    animation:
+        chatOpen .35s ease;
+}
+
+@keyframes chatOpen {
+
+    from {
+        opacity: 0;
+        transform: scale(.85);
     }
 
-    .menu-card h2 {
-      margin-top: 0;
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
-      color: #5865F2;
 
-      font-size: 26px;
+/* =========================
+   CHAT HEADER
+========================= */
 
-      text-shadow:
-        0 0 10px #5865F2;
+.chat-header {
+
+    padding: 18px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+}
+
+.ai-title {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.ai-icon {
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    background: #5865F2;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    box-shadow:
+        0 0 20px
+        rgba(88,101,242,.7);
+}
+
+.ai-title h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.ai-online {
+
+    color: #43ff88;
+
+    font-size: 12px;
+
+    margin-top: 3px;
+}
+
+.close-chat {
+
+    background: transparent;
+
+    border: none;
+
+    color: white;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.close-chat:hover {
+    color: #5865F2;
+    transform: rotate(90deg);
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+.chat-messages {
+
+    flex: 1;
+
+    padding: 20px;
+
+    overflow-y: auto;
+}
+
+.message {
+
+    margin-bottom: 12px;
+
+    padding: 12px 15px;
+
+    border-radius: 15px;
+
+    max-width: 85%;
+
+    line-height: 1.7;
+
+    white-space: pre-line;
+
+    word-wrap: break-word;
+}
+
+.bot-message {
+
+    background:
+        rgba(88,101,242,.18);
+
+    border:
+        1px solid rgba(88,101,242,.25);
+
+    color: white;
+}
+
+.user-message {
+
+    background:
+        rgba(255,255,255,.08);
+
+    color: white;
+
+    margin-left: auto;
+}
+
+
+/* =========================
+   QUESTION LIST
+========================= */
+
+.question-title {
+
+    padding:
+        10px 20px 5px;
+
+    color: #9da5ff;
+
+    font-size: 13px;
+}
+
+.question-list {
+
+    padding:
+        5px 20px 12px;
+
+    max-height: 150px;
+
+    overflow-y: auto;
+
+    border-top:
+        1px solid rgba(255,255,255,.06);
+}
+
+.question-btn {
+
+    width: 100%;
+
+    text-align: left;
+
+    margin-bottom: 7px;
+
+    padding: 10px 12px;
+
+    border-radius: 10px;
+
+    border:
+        1px solid
+        rgba(88,101,242,.25);
+
+    background:
+        rgba(88,101,242,.08);
+
+    color: white;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.question-btn:hover {
+
+    background:
+        rgba(88,101,242,.25);
+
+    transform:
+        translateX(4px);
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.chat-input-area {
+
+    padding: 15px;
+
+    display: flex;
+
+    gap: 10px;
+
+    border-top:
+        1px solid rgba(255,255,255,.08);
+}
+
+.chat-input {
+
+    flex: 1;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.12);
+
+    color: white;
+
+    outline: none;
+
+    border-radius: 12px;
+
+    padding: 13px;
+
+    font-size: 14px;
+}
+
+.chat-input::placeholder {
+    color: #888da8;
+}
+
+.chat-send {
+
+    width: 50px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #5865F2;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: .2s;
+}
+
+.chat-send:hover {
+
+    background: #4752c4;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px) {
+
+    .container {
+        padding: 35px 12px;
     }
 
-    /* ================= BUTTONS ================= */
-
-    .menu-button,
-    .service-button {
-      display: block;
-
-      width: 100%;
-
-      margin: 8px 0;
-
-      padding: 12px;
-
-      border: none;
-
-      border-radius: 10px;
-
-      background: #5865F2;
-
-      color: white;
-
-      font-size: 16px;
-
-      cursor: pointer;
-
-      transition: .3s;
+    .card {
+        padding: 25px 18px;
     }
 
-    .menu-button:hover,
-    .service-button:hover {
-      transform: scale(1.03);
-
-      box-shadow:
-        0 0 18px rgba(88,101,242,.7);
+    .discord-logo {
+        font-size: 70px;
     }
 
-    /* ================= SERVICES ================= */
-
-    .services-card {
-      margin-top: 20px;
-
-      padding: 22px;
-
-      background: rgba(15,15,30,.85);
-
-      border: 1px solid rgba(88,101,242,.35);
-
-      border-radius: 20px;
-
-      box-shadow:
-        0 0 25px rgba(88,101,242,.2);
-
-      text-align: center;
+    .welcome-title {
+        font-size: 32px;
     }
 
-    .services-card h2 {
-      margin-top: 0;
-
-      color: #5865F2;
-
-      font-size: 26px;
-
-      text-shadow:
-        0 0 10px #5865F2;
+    .card h2 {
+        font-size: 25px;
     }
 
-    .service-button i {
-      margin-right: 8px;
+    .chat-box {
+        height: 90vh;
     }
 
-    /* ================= ABOUT ================= */
+}
 
-    .guide {
-      display: none;
-
-      position: fixed;
-
-      top: 50%;
-      left: 50%;
-
-      transform: translate(-50%,-50%);
-
-      width: 85%;
-      max-width: 700px;
-
-      max-height: 80vh;
-
-      overflow-y: auto;
-
-      padding: 30px;
-
-      background: rgba(10,10,20,.98);
-
-      color: white;
-
-      border: 1px solid #5865F2;
-
-      border-radius: 20px;
-
-      box-shadow:
-        0 0 40px rgba(88,101,242,.6);
-
-      z-index: 1000;
-
-      text-align: center;
-    }
-
-    .guide h2 {
-      color: #5865F2;
-
-      text-align: center;
-
-      font-size: 32px;
-    }
-
-    .guide p {
-      line-height: 1.8;
-
-      font-size: 16px;
-    }
-
-    .close-button {
-      padding: 10px 25px;
-
-      border: none;
-
-      border-radius: 10px;
-
-      background: #5865F2;
-
-      color: white;
-
-      font-size: 16px;
-
-      cursor: pointer;
-    }
-
-    /* ================= FOOTER ================= */
-
-    .developer {
-      position: fixed;
-
-      bottom: 12px;
-
-      left: 50%;
-
-      transform: translateX(-50%);
-
-      color: rgba(255,255,255,.6);
-
-      font-size: 14px;
-
-      z-index: 50;
-
-      text-align: center;
-    }
-
-    .developer span {
-      color: #5865F2;
-
-      text-shadow:
-        0 0 8px #5865F2;
-    }
-
-    /* ================= MOBILE ================= */
-
-    @media (max-width: 600px) {
-
-      .card {
-        padding: 50px 25px;
-      }
-
-      .welcome {
-        font-size: 35px;
-      }
-
-      .iranian-title {
-        font-size: 28px;
-      }
-
-      .menu-card,
-      .services-card {
-        padding: 18px;
-      }
-
-    }
-
-  </style>
+</style>
 </head>
 
 
 <body>
 
-  <!-- ================= FIRST CARD ================= -->
 
-  <div class="card card-one">
-
-    <div class="content">
-
-      <i class="fa-brands fa-discord discord"></i>
-
-      <h1 class="welcome">
-        Welcome
-      </h1>
-
-    </div>
-
-  </div>
+<div class="container">
 
 
-  <!-- ================= SECOND CARD ================= -->
+    <!-- =========================
+         CARD 1
+    ========================== -->
 
-  <div class="card card-two">
+    <div class="card welcome-card">
 
-    <div class="content">
+        <i class="fab fa-discord discord-logo"></i>
 
-      <h1 class="iranian-title">
-        Welcome to Iranian Discord
-      </h1>
-
-      <p class="iranian-text">
-        Welcome to our community 🇮🇷
-      </p>
-
-
-      <!-- ================= MENU ================= -->
-
-      <div class="menu-card">
-
-        <h2>
-          Menu
-        </h2>
-
-        <button
-          class="menu-button"
-          onclick="showAbout()">
-
-          About Us
-
-        </button>
-
-      </div>
-
-
-      <!-- ================= SERVICES ================= -->
-
-      <div class="services-card">
-
-        <h2>
-          Services
-        </h2>
-
-        <button class="service-button">
-
-          <i class="fa-solid fa-server"></i>
-
-          Server Creation
-
-        </button>
-
-
-        <button class="service-button">
-
-          <i class="fa-solid fa-robot"></i>
-
-          Bot Creation
-
-        </button>
-
-
-        <button class="service-button">
-
-          <i class="fa-solid fa-gem"></i>
-
-          Nitro Purchase
-
-        </button>
-
-      </div>
+        <h1 class="welcome-title">
+            Welcome
+        </h1>
 
     </div>
 
-  </div>
 
 
-  <!-- ================= ABOUT US ================= -->
+    <!-- =========================
+         CARD 2
+    ========================== -->
 
-  <div id="about" class="guide">
+    <div class="card">
 
-    <h2>
-      About Us
-    </h2>
+        <h2>
+            Welcome to Iranian Discord
+        </h2>
 
-    <p>
-      Developer : hoseinzp7
-    </p>
+        <p>
+            Welcome to our community 🇮🇷
+        </p>
 
-    <p>
-      ID Discord : hoseinzp7
-    </p>
-
-    <p>
-      ID Discord : hoseinzp
-    </p>
-
-    <br>
-
-    <button
-      class="close-button"
-      onclick="hideAbout()">
-
-      Close
-
-    </button>
-
-  </div>
+    </div>
 
 
-  <!-- ================= DEVELOPER ================= -->
 
-  <div class="developer">
+    <!-- =========================
+         CARD 3
+    ========================== -->
 
-    Developer :
-    <span>hoseinzp7</span>
+    <div class="card">
 
-  </div>
+        <h2>
+            Iranian Discord
+        </h2>
+
+        <p>
+            Iranian Discord is a website dedicated
+            to helping people who use the Discord platform.
+        </p>
+
+    </div>
 
 
-  <!-- ================= JAVASCRIPT ================= -->
 
-  <script>
+    <!-- =========================
+         CARD 4
+    ========================== -->
 
-    function showAbout() {
+    <div class="card about-discord">
 
-      document
-        .getElementById("about")
-        .style.display = "block";
+        <h2>
+            About Discord
+        </h2>
 
+        <ul class="discord-facts">
+
+            <li>
+                Discord is a communication platform
+                for communities and friends.
+            </li>
+
+            <li>
+                Users can communicate through
+                text, voice and video.
+            </li>
+
+            <li>
+                Discord servers can contain
+                multiple channels.
+            </li>
+
+            <li>
+                Roles and permissions help
+                administrators manage servers.
+            </li>
+
+            <li>
+                Discord also supports bots,
+                applications and integrations.
+            </li>
+
+        </ul>
+
+    </div>
+
+
+
+    <!-- =========================
+         MAIN MENU
+    ========================== -->
+
+    <div class="card menu-card">
+
+        <h2>
+            Menu
+        </h2>
+
+        <div class="menu">
+
+            <button onclick="openChat()">
+
+                <i class="fas fa-robot"></i>
+
+                Chat AI
+
+            </button>
+
+
+            <button onclick="showGuide()">
+
+                <i class="fas fa-book"></i>
+
+                Guide
+
+            </button>
+
+
+            <button onclick="showAbout()">
+
+                <i class="fas fa-circle-info"></i>
+
+                About Us
+
+            </button>
+
+
+            <button onclick="showSupport()">
+
+                <i class="fas fa-headset"></i>
+
+                Support
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CHAT AI
+===================================================== -->
+
+<div class="chat-ai" id="chatAI">
+
+
+    <div class="chat-box">
+
+
+        <!-- HEADER -->
+
+        <div class="chat-header">
+
+            <div class="ai-title">
+
+                <div class="ai-icon">
+
+                    <i class="fas fa-robot"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Iranian Discord AI
+                    </h3>
+
+                    <div class="ai-online">
+                        ● Online
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="close-chat"
+                onclick="closeChat()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <!-- MESSAGES -->
+
+        <div
+            class="chat-messages"
+            id="chatMessages">
+
+            <div class="message bot-message">
+
+                🤖 سلام!
+
+                من Iranian Discord AI هستم.
+
+                فقط درباره Discord راهنمایی می‌کنم.
+
+                از لیست پایین می‌تونی یکی از
+                ۱۰۰ سؤال آماده رو انتخاب کنی.
+
+            </div>
+
+        </div>
+
+
+
+        <!-- QUESTIONS -->
+
+        <div class="question-title">
+
+            💡 ۱۰۰ سؤال آماده Discord
+
+        </div>
+
+
+        <div
+            class="question-list"
+            id="questionList">
+
+        </div>
+
+
+
+        <!-- INPUT -->
+
+        <div class="chat-input-area">
+
+            <input
+                class="chat-input"
+                id="chatInput"
+                type="text"
+                placeholder="Ask about Discord..."
+            >
+
+
+            <button
+                class="chat-send"
+                onclick="sendChat()">
+
+                <i class="fas fa-paper-plane"></i>
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+/* =====================================================
+   100 DISCORD QUESTIONS
+===================================================== */
+
+const discordQuestions = [
+
+/* 1 */
+
+{
+q:"چطور اکانت Discord بسازم؟",
+a:"برای ساخت اکانت Discord وارد صفحه ثبت‌نام Discord شو، ایمیل، نام کاربری و رمز عبور انتخاب کن و مراحل تأیید را انجام بده."
+},
+
+/* 2 */
+
+{
+q:"چطور وارد Discord شوم؟",
+a:"Discord را باز کن و گزینه Login را بزن، سپس ایمیل یا شماره تلفن و رمز عبورت را وارد کن."
+},
+
+/* 3 */
+
+{
+q:"چطور رمز Discord را عوض کنم؟",
+a:"به User Settings برو، وارد بخش Account شو و گزینه تغییر رمز عبور را انتخاب کن."
+},
+
+/* 4 */
+
+{
+q:"اگر رمز Discord را فراموش کنم چه کنم؟",
+a:"در صفحه Login روی Forgot your password? بزن و ایمیل متصل به اکانت را وارد کن."
+},
+
+/* 5 */
+
+{
+q:"چطور ایمیل Discord را تغییر بدهم؟",
+a:"از User Settings وارد Account شو و از بخش Email، ایمیل جدید را تنظیم و تأیید کن."
+},
+
+/* 6 */
+
+{
+q:"چطور شماره تلفن Discord را اضافه کنم؟",
+a:"از تنظیمات Account می‌توانی شماره تلفن خودت را اضافه و سپس آن را تأیید کنی."
+},
+
+/* 7 */
+
+{
+q:"چطور از Discord خارج شوم؟",
+a:"از User Settings پایین صفحه گزینه Log Out را انتخاب کن."
+},
+
+/* 8 */
+
+{
+q:"چطور اکانت Discord را حذف کنم؟",
+a:"از User Settings وارد Account شو و گزینه Delete Account را انتخاب کن و مراحل تأیید را انجام بده."
+},
+
+/* 9 */
+
+{
+q:"چطور اکانت Discord را غیرفعال کنم؟",
+a:"در Account Settings گزینه Disable Account را انتخاب کن."
+},
+
+/* 10 */
+
+{
+q:"Discord روی کامپیوتر نصب نمی‌شود، چه کنم؟",
+a:"اتصال اینترنت، فضای خالی و نسخه سیستم‌عامل را بررسی کن و سپس آخرین نسخه Discord را نصب کن."
+},
+
+/* 11 */
+
+{
+q:"چطور یک Server بسازم؟",
+a:"در Discord روی علامت + در بخش سرورها کلیک کن و گزینه Create My Own را انتخاب کن."
+},
+
+/* 12 */
+
+{
+q:"چطور اسم Server را عوض کنم؟",
+a:"وارد Server Settings شو و از بخش Overview نام سرور را تغییر بده."
+},
+
+/* 13 */
+
+{
+q:"چطور عکس Server را عوض کنم؟",
+a:"در Server Settings بخش Overview می‌توانی آیکون سرور را تغییر بدهی."
+},
+
+/* 14 */
+
+{
+q:"چطور Invite Link بسازم؟",
+a:"روی نام سرور کلیک کن، Invite People را انتخاب کن و لینک دعوت را کپی کن."
+},
+
+/* 15 */
+
+{
+q:"چطور Invite Link را دائمی کنم؟",
+a:"هنگام ساخت لینک دعوت، تنظیمات Expire و Max Uses را طوری تنظیم کن که محدودیت نداشته باشد، اگر Discord برای آن سرور اجازه بدهد."
+},
+
+/* 16 */
+
+{
+q:"چطور کسی را به Server دعوت کنم؟",
+a:"لینک Invite سرور را برای او بفرست."
+},
+
+/* 17 */
+
+{
+q:"چطور کسی را Kick کنم؟",
+a:"روی نام کاربر کلیک راست کن و گزینه Kick را انتخاب کن، اگر Permission لازم را داشته باشی."
+},
+
+/* 18 */
+
+{
+q:"چطور کسی را Ban کنم؟",
+a:"روی کاربر کلیک راست کن و گزینه Ban را انتخاب کن، در صورتی که Permission لازم را داشته باشی."
+},
+
+/* 19 */
+
+{
+q:"چطور کسی را Unban کنم؟",
+a:"به Server Settings و بخش Bans برو، کاربر موردنظر را پیدا کن و Unban را بزن."
+},
+
+/* 20 */
+
+{
+q:"چطور Server را Delete کنم؟",
+a:"مالک سرور می‌تواند از Server Settings گزینه Delete Server را انتخاب کند."
+},
+
+/* 21 */
+
+{
+q:"Role چیست؟",
+a:"Role در Discord برای مدیریت دسترسی‌ها و مشخص کردن جایگاه اعضای سرور استفاده می‌شود."
+},
+
+/* 22 */
+
+{
+q:"چطور Role بسازم؟",
+a:"به Server Settings و سپس Roles برو و گزینه Create Role را انتخاب کن."
+},
+
+/* 23 */
+
+{
+q:"چطور Role را به کاربر بدهم؟",
+a:"روی نام کاربر کلیک کن و Role موردنظر را انتخاب کن، اگر Permission لازم را داشته باشی."
+},
+
+/* 24 */
+
+{
+q:"چطور Role را حذف کنم؟",
+a:"از Server Settings وارد Roles شو و Role موردنظر را حذف کن."
+},
+
+/* 25 */
+
+{
+q:"Permission چیست؟",
+a:"Permission مشخص می‌کند یک کاربر یا Role چه کارهایی می‌تواند در سرور انجام دهد."
+},
+
+/* 26 */
+
+{
+q:"چطور اجازه مدیریت پیام‌ها را بدهم؟",
+a:"در تنظیمات Role، Permission مربوط به Manage Messages را فعال کن."
+},
+
+/* 27 */
+
+{
+q:"Administrator چیست؟",
+a:"Administrator یک Permission بسیار قدرتمند است که دسترسی‌های مدیریتی زیادی به Role می‌دهد."
+},
+
+/* 28 */
+
+{
+q:"چطور رنگ Role را تغییر بدهم؟",
+a:"در Server Settings و بخش Roles، Role را انتخاب کن و رنگ آن را تغییر بده."
+},
+
+/* 29 */
+
+{
+q:"چطور Role را بالاتر ببرم؟",
+a:"در بخش Roles می‌توانی جای Role را تغییر بدهی؛ البته محدودیت‌های مربوط به Hierarchy را باید رعایت کنی."
+},
+
+/* 30 */
+
+{
+q:"چرا نمی‌توانم Role یک نفر را تغییر بدهم؟",
+a:"احتمالاً Role تو از Role آن کاربر پایین‌تر است یا Permission لازم را نداری."
+},
+
+/* 31 */
+
+{
+q:"Channel چیست؟",
+a:"Channel محلی برای ارتباط اعضای یک Discord Server است و می‌تواند متنی یا صوتی باشد."
+},
+
+/* 32 */
+
+{
+q:"چطور Text Channel بسازم؟",
+a:"کنار دسته‌بندی موردنظر روی + کلیک کن و Text Channel را انتخاب کن."
+},
+
+/* 33 */
+
+{
+q:"چطور Voice Channel بسازم؟",
+a:"کنار دسته‌بندی روی + کلیک کن و Voice Channel را انتخاب کن."
+},
+
+/* 34 */
+
+{
+q:"چطور Channel را حذف کنم؟",
+a:"از تنظیمات Channel گزینه Delete Channel را انتخاب کن."
+},
+
+/* 35 */
+
+{
+q:"چطور Channel را Private کنم؟",
+a:"در Channel Settings بخش Permissions دسترسی @everyone را محدود کن و دسترسی Roleهای موردنظر را تنظیم کن."
+},
+
+/* 36 */
+
+{
+q:"چطور اسم Channel را تغییر بدهم؟",
+a:"Channel را باز کن، وارد Edit Channel شو و نام آن را تغییر بده."
+},
+
+/* 37 */
+
+{
+q:"چطور Channel را جابه‌جا کنم؟",
+a:"در لیست Channelها آن را بکش و در محل موردنظر قرار بده، اگر Permission لازم را داشته باشی."
+},
+
+/* 38 */
+
+{
+q:"Category چیست؟",
+a:"Category برای دسته‌بندی و مرتب کردن Channelهای یک سرور استفاده می‌شود."
+},
+
+/* 39 */
+
+{
+q:"چطور Category بسازم؟",
+a:"روی نام سرور کلیک کن و Create Category را انتخاب کن."
+},
+
+/* 40 */
+
+{
+q:"چطور Channel را داخل Category بگذارم؟",
+a:"Channel را بکش و داخل Category موردنظر قرار بده."
+},
+
+/* 41 */
+
+{
+q:"چرا میکروفون Discord کار نمی‌کند؟",
+a:"در User Settings بخش Voice & Video ورودی میکروفون را بررسی کن و مطمئن شو Discord اجازه دسترسی به Microphone را دارد."
+},
+
+/* 42 */
+
+{
+q:"چطور میکروفونم را انتخاب کنم؟",
+a:"به User Settings و Voice & Video برو و از Input Device میکروفون موردنظر را انتخاب کن."
+},
+
+/* 43 */
+
+{
+q:"چطور صدای Discord را زیاد کنم؟",
+a:"از تنظیمات صدا یا Volume Mixer سیستم و همچنین تنظیمات Voice & Video میزان صدا را بررسی کن."
+},
+
+/* 44 */
+
+{
+q:"چرا صدای دوست من نمی‌آید؟",
+a:"بررسی کن صدای Discord قطع نباشد، کاربر Mute نباشد و Output Device درست انتخاب شده باشد."
+},
+
+/* 45 */
+
+{
+q:"چطور کسی را در Voice Mute کنم؟",
+a:"روی کاربر کلیک راست کن و گزینه Server Mute یا Mute را انتخاب کن، اگر Permission لازم را داشته باشی."
+},
+
+/* 46 */
+
+{
+q:"چطور Deafen کنم؟",
+a:"روی گزینه Deafen در بخش Voice Controls کلیک کن."
+},
+
+/* 47 */
+
+{
+q:"چرا Discord صدای بازی را منتقل نمی‌کند؟",
+a:"Input Device و تنظیمات Voice Activity را بررسی کن و مطمئن شو Discord به دستگاه صوتی درست دسترسی دارد."
+},
+
+/* 48 */
+
+{
+q:"Push to Talk چیست؟",
+a:"Push to Talk حالتی است که فقط هنگام نگه داشتن یک کلید، صدای میکروفون منتقل می‌شود."
+},
+
+/* 49 */
+
+{
+q:"چطور Push to Talk فعال کنم؟",
+a:"در User Settings و Voice & Video حالت Input Mode را روی Push to Talk قرار بده."
+},
+
+/* 50 */
+
+{
+q:"چطور کلید Push to Talk را تغییر بدهم؟",
+a:"در User Settings بخش Keybinds می‌توانی کلید Push to Talk را تغییر بدهی."
+},
+
+/* 51 */
+
+{
+q:"Discord Nitro چیست؟",
+a:"Nitro یک اشتراک پولی Discord است که امکانات و قابلیت‌های اضافه‌ای در اختیار کاربر قرار می‌دهد."
+},
+
+/* 52 */
+
+{
+q:"Nitro چه امکاناتی دارد؟",
+a:"بسته به نوع اشتراک، امکاناتی مثل قابلیت‌های بیشتر برای Emoji، آپلود فایل و امکانات شخصی‌سازی ارائه می‌شود."
+},
+
+/* 53 */
+
+{
+q:"چطور Nitro بخرم؟",
+a:"از بخش Nitro در Discord می‌توانی گزینه‌های اشتراک را مشاهده و در صورت داشتن روش پرداخت مناسب خرید را انجام بدهی."
+},
+
+/* 54 */
+
+{
+q:"چطور Nitro را لغو کنم؟",
+a:"از User Settings و بخش Subscriptions می‌توانی اشتراک خود را مدیریت یا لغو کنی."
+},
+
+/* 55 */
+
+{
+q:"Nitro Gift چیست؟",
+a:"Nitro Gift هدیه‌ای است که یک کاربر می‌تواند برای فعال‌سازی Nitro به کاربر دیگر ارسال کند."
+},
+
+/* 56 */
+
+{
+q:"چطور Nitro Gift را فعال کنم؟",
+a:"اگر Gift معتبر دریافت کرده‌ای، آن را از طریق Discord Redeem کن و مراحل نمایش داده‌شده را انجام بده."
+},
+
+/* 57 */
+
+{
+q:"آیا Nitro رایگان است؟",
+a:"Nitro معمولاً یک سرویس پولی است؛ مراقب سایت‌هایی باش که وعده Nitro رایگان می‌دهند و اطلاعات ورود می‌خواهند."
+},
+
+/* 58 */
+
+{
+q:"چطور بفهمم Nitro واقعی است؟",
+a:"Gift یا پیشنهاد را فقط از منابع معتبر Discord بررسی کن و رمز عبورت را در سایت‌های ناشناس وارد نکن."
+},
+
+/* 59 */
+
+{
+q:"Discord Boost چیست؟",
+a:"Server Boost قابلیتی است که اعضا می‌توانند برای حمایت از یک سرور استفاده کنند و با افزایش Boostها امکاناتی برای سرور فعال می‌شود."
+},
+
+/* 60 */
+
+{
+q:"چطور Server را Boost کنم؟",
+a:"از صفحه سرور یا بخش Nitro می‌توانی گزینه Server Boost را پیدا کنی، اگر برای اکانتت در دسترس باشد."
+},
+
+/* 61 */
+
+{
+q:"Bot در Discord چیست؟",
+a:"Bot یک برنامه خودکار است که می‌تواند کارهای مختلفی مثل مدیریت، سرگرمی یا اجرای دستورات را در سرور انجام دهد."
+},
+
+/* 62 */
+
+{
+q:"چطور Bot به Server اضافه کنم؟",
+a:"از صفحه رسمی یا معتبر Bot، گزینه Invite یا Add to Discord را انتخاب کن و سرور موردنظر را انتخاب کن."
+},
+
+/* 63 */
+
+{
+q:"چطور Bot را حذف کنم؟",
+a:"اگر Permission لازم را داشته باشی، می‌توانی Bot را Kick یا Ban کنی."
+},
+
+/* 64 */
+
+{
+q:"چطور Bot بسازم؟",
+a:"برای ساخت Bot می‌توانی از Discord Developer Portal و یک زبان برنامه‌نویسی مثل JavaScript یا Python استفاده کنی."
+},
+
+/* 65 */
+
+{
+q:"Discord Developer Portal چیست؟",
+a:"Developer Portal محیط رسمی Discord برای ساخت و مدیریت Applicationها و Botهاست."
+},
+
+/* 66 */
+
+{
+q:"Bot Token چیست؟",
+a:"Bot Token یک کلید محرمانه برای دسترسی برنامه به Bot است و نباید آن را با دیگران به اشتراک بگذاری."
+},
+
+/* 67 */
+
+{
+q:"اگر Bot Token لو رفت چه کنم؟",
+a:"توکن را در Developer Portal بازسازی یا Reset کن و توکن قبلی را دیگر استفاده نکن."
+},
+
+/* 68 */
+
+{
+q:"چطور Bot را Online کنم؟",
+a:"باید برنامه Bot را روی کامپیوتر یا یک سرویس مناسب اجرا کنی و کد Bot را به Discord متصل کنی."
+},
+
+/* 69 */
+
+{
+q:"چرا Bot من Offline است؟",
+a:"بررسی کن برنامه Bot در حال اجرا باشد، Token درست باشد و اتصال اینترنت و کد Bot مشکلی نداشته باشد."
+},
+
+/* 70 */
+
+{
+q:"چطور برای Bot Command بسازم؟",
+a:"می‌توانی از Slash Commands و APIهای Discord برای ساخت دستورهای Bot استفاده کنی."
+},
+
+/* 71 */
+
+{
+q:"چطور امنیت Discord را بیشتر کنم؟",
+a:"رمز قوی استفاده کن، احراز هویت دومرحله‌ای را فعال کن و روی لینک‌های ناشناس کلیک نکن."
+},
+
+/* 72 */
+
+{
+q:"2FA در Discord چیست؟",
+a:"2FA یک لایه امنیتی اضافه است که هنگام ورود می‌تواند کد تأیید بیشتری از کاربر بخواهد."
+},
+
+/* 73 */
+
+{
+q:"چطور 2FA را فعال کنم؟",
+a:"در User Settings و بخش Account گزینه مربوط به Two-Factor Authentication را پیدا کن و مراحل را انجام بده."
+},
+
+/* 74 */
+
+{
+q:"Phishing در Discord چیست؟",
+a:"Phishing تلاش برای فریب کاربر جهت گرفتن اطلاعاتی مثل رمز عبور یا Token است."
+},
+
+/* 75 */
+
+{
+q:"چطور یک لینک مشکوک را تشخیص بدهم؟",
+a:"آدرس سایت را با دقت بررسی کن و اگر لینک ناشناس است، اطلاعات ورود یا اطلاعات شخصی خودت را وارد نکن."
+},
+
+/* 76 */
+
+{
+q:"اگر اکانتم هک شد چه کنم؟",
+a:"رمز عبور را تغییر بده، نشست‌های مشکوک را بررسی کن، 2FA را فعال کن و از مسیرهای رسمی Discord برای بازیابی کمک بگیر."
+},
+
+/* 77 */
+
+{
+q:"چطور کاربر مزاحم را Block کنم؟",
+a:"روی پروفایل کاربر کلیک راست کن و گزینه Block را انتخاب کن."
+},
+
+/* 78 */
+
+{
+q:"چطور کسی را Report کنم؟",
+a:"از امکانات گزارش‌دهی رسمی Discord برای گزارش رفتار یا محتوایی که قوانین Discord را نقض می‌کند استفاده کن."
+},
+
+/* 79 */
+
+{
+q:"چطور پیام‌های مزاحم را مدیریت کنم؟",
+a:"می‌توانی کاربر را Mute یا Block کنی و در سرور نیز از ابزارهای Moderation استفاده کنی."
+},
+
+/* 80 */
+
+{
+q:"چطور Privacy تنظیماتم را تغییر بدهم؟",
+a:"از User Settings وارد Privacy & Safety شو و گزینه‌های مربوط به پیام‌ها و درخواست‌های دوستی را تنظیم کن."
+},
+
+/* 81 */
+
+{
+q:"چطور Friend اضافه کنم؟",
+a:"به بخش Friends برو و گزینه Add Friend را انتخاب کن، سپس Username مربوط به دوستت را وارد کن."
+},
+
+/* 82 */
+
+{
+q:"چطور Friend را حذف کنم؟",
+a:"روی پروفایل دوستت کلیک راست کن و گزینه Remove Friend را انتخاب کن."
+},
+
+/* 83 */
+
+{
+q:"DM چیست؟",
+a:"DM یا Direct Message یک گفت‌وگوی خصوصی بین کاربران Discord است."
+},
+
+/* 84 */
+
+{
+q:"چطور DM را ببندم؟",
+a:"می‌توانی گفت‌وگوی DM را ببندی؛ این کار معمولاً پیام‌های قبلی را حذف نمی‌کند."
+},
+
+/* 85 */
+
+{
+q:"چطور پیام را Delete کنم؟",
+a:"روی پیام خودت کلیک راست کن و گزینه Delete Message را انتخاب کن."
+},
+
+/* 86 */
+
+{
+q:"چطور پیام را Edit کنم؟",
+a:"روی پیام خودت کلیک راست کن و گزینه Edit Message را انتخاب کن."
+},
+
+/* 87 */
+
+{
+q:"چطور Emoji اضافه کنم؟",
+a:"اگر Permission لازم را داشته باشی، از Server Settings و بخش Emoji می‌توانی Emoji اضافه کنی."
+},
+
+/* 88 */
+
+{
+q:"چطور Sticker اضافه کنم؟",
+a:"در سرورهای دارای قابلیت مربوطه، می‌توانی از تنظیمات Server بخش Stickerها را مدیریت کنی."
+},
+
+/* 89 */
+
+{
+q:"چطور یک Message را Pin کنم؟",
+a:"روی پیام کلیک راست کن و گزینه Pin Message را انتخاب کن، اگر Permission لازم را داشته باشی."
+},
+
+/* 90 */
+
+{
+q:"Thread در Discord چیست؟",
+a:"Thread یک گفت‌وگوی جداشده از یک پیام است که برای مرتب نگه داشتن بحث‌ها استفاده می‌شود."
+},
+
+/* 91 */
+
+{
+q:"چطور Discord را آپدیت کنم؟",
+a:"Discord معمولاً هنگام اجرا خودش را بررسی و به‌روزرسانی می‌کند. همچنین می‌توانی آخرین نسخه را از منابع رسمی Discord دریافت کنی."
+},
+
+/* 92 */
+
+{
+q:"چرا Discord کند شده؟",
+a:"اتصال اینترنت، مصرف RAM و CPU، برنامه‌های پس‌زمینه و تنظیمات Discord را بررسی کن."
+},
+
+/* 93 */
+
+{
+q:"چرا Discord باز نمی‌شود؟",
+a:"برنامه را کاملاً ببند و دوباره اجرا کن. اگر مشکل ادامه داشت، سیستم و نسخه Discord را بررسی و در صورت نیاز نصب مجدد کن."
+},
+
+/* 94 */
+
+{
+q:"چرا Discord قطع و وصل می‌شود؟",
+a:"اتصال اینترنت و وضعیت سرویس Discord را بررسی کن و در صورت مشکل شبکه، اتصال دیگری را امتحان کن."
+},
+
+/* 95 */
+
+{
+q:"چطور Cache Discord را پاک کنم؟",
+a:"روش پاک کردن Cache به سیستم‌عامل بستگی دارد؛ معمولاً باید Discord را ببندی و پوشه Cache مربوط به برنامه را پاک کنی."
+},
+
+/* 96 */
+
+{
+q:"Discord روی موبایل کار نمی‌کند، چه کنم؟",
+a:"برنامه را آپدیت کن، اینترنت را بررسی کن و در صورت ادامه مشکل Cache برنامه را پاک یا Discord را دوباره نصب کن."
+},
+
+/* 97 */
+
+{
+q:"چطور زبان Discord را تغییر بدهم؟",
+a:"از User Settings وارد Language شو و زبان موردنظر را انتخاب کن."
+},
+
+/* 98 */
+
+{
+q:"چطور Dark Mode فعال کنم؟",
+a:"از User Settings وارد Appearance شو و حالت Dark را انتخاب کن."
+},
+
+/* 99 */
+
+{
+q:"چطور Notificationهای Discord را خاموش کنم؟",
+a:"از User Settings و Notifications می‌توانی اعلان‌های Discord را مدیریت یا خاموش کنی."
+},
+
+/* 100 */
+
+{
+q:"چطور بفهمم Discord مشکل دارد؟",
+a:"اگر Discord برای بسیاری از کاربران مشکل دارد، وضعیت سرویس را از صفحه رسمی وضعیت Discord بررسی کن."
+}
+
+];
+
+
+
+/* =====================================================
+   CHAT FUNCTIONS
+===================================================== */
+
+function openChat() {
+
+    document.getElementById("chatAI").style.display = "flex";
+
+    document.getElementById("chatInput").focus();
+
+}
+
+
+function closeChat() {
+
+    document.getElementById("chatAI").style.display = "none";
+
+}
+
+
+/* =====================================================
+   CREATE 100 QUESTION BUTTONS
+===================================================== */
+
+const questionList =
+    document.getElementById("questionList");
+
+
+discordQuestions.forEach((item,index) => {
+
+    const button =
+        document.createElement("button");
+
+    button.className =
+        "question-btn";
+
+    button.textContent =
+        `${index + 1}. ${item.q}`;
+
+
+    button.onclick = function() {
+
+        addMessage(item.q,"user");
+
+
+        setTimeout(function() {
+
+            addMessage(item.a,"bot");
+
+        },300);
+
+    };
+
+
+    questionList.appendChild(button);
+
+});
+
+
+
+/* =====================================================
+   ADD MESSAGE
+===================================================== */
+
+function addMessage(text,type) {
+
+    const messages =
+        document.getElementById("chatMessages");
+
+
+    const message =
+        document.createElement("div");
+
+
+    message.className =
+        "message " +
+        (type === "user"
+            ? "user-message"
+            : "bot-message");
+
+
+    message.textContent = text;
+
+
+    messages.appendChild(message);
+
+
+    messages.scrollTop =
+        messages.scrollHeight;
+
+}
+
+
+
+/* =====================================================
+   SEND MESSAGE
+===================================================== */
+
+function sendChat() {
+
+    const input =
+        document.getElementById("chatInput");
+
+
+    const text =
+        input.value.trim();
+
+
+    if (!text) return;
+
+
+    addMessage(text,"user");
+
+
+    input.value = "";
+
+
+    /*
+       EXACT QUESTION SEARCH
+    */
+
+    const exact =
+        discordQuestions.find(item =>
+            item.q.toLowerCase()
+            ===
+            text.toLowerCase()
+        );
+
+
+    if (exact) {
+
+        setTimeout(function() {
+
+            addMessage(
+                exact.a,
+                "bot"
+            );
+
+        },300);
+
+        return;
     }
 
 
-    function hideAbout() {
 
-      document
-        .getElementById("about")
-        .style.display = "none";
+    /*
+       KEYWORD SEARCH
+    */
+
+    const words =
+        text
+        .toLowerCase()
+        .split(/\s+/)
+        .filter(word => word.length > 2);
+
+   
+    let bestMatch = null;
+
+    let bestScore = 0;
+
+
+    discordQuestions.forEach(item => {
+
+        const question =
+            item.q.toLowerCase();
+
+
+        let score = 0;
+
+
+        words.forEach(word => {
+
+            if (question.includes(word)) {
+
+                score++;
+
+            }
+
+        });
+
+
+        if (score > bestScore) {
+
+            bestScore = score;
+
+            bestMatch = item;
+
+        }
+
+    });
+
+
+
+    setTimeout(function() {
+
+        if (bestMatch && bestScore > 0) {
+
+            addMessage(
+                bestMatch.a,
+                "bot"
+            );
+
+        }
+
+        else {
+
+            addMessage(
+
+`🤖 من فقط درباره Discord راهنمایی می‌کنم.
+
+مثلاً می‌تونی بپرسی:
+
+• چطور Role بسازم؟
+• چطور Bot اضافه کنم؟
+• چرا میکروفون Discord کار نمی‌کنه؟
+• چطور Server بسازم؟
+• چطور 2FA فعال کنم؟
+• Discord Nitro چیست؟`,
+
+                "bot"
+            );
+
+        }
+
+    },400);
+
+}
+
+
+
+/* =====================================================
+   ENTER KEY
+===================================================== */
+
+document
+.getElementById("chatInput")
+.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            sendChat();
+
+        }
 
     }
+);
 
-  </script>
+
+
+/* =====================================================
+   MENU BUTTONS
+===================================================== */
+
+function showGuide() {
+
+    alert(
+        "📖 Guide\n\n" +
+        "برای راهنمایی Discord می‌تونی از Chat AI استفاده کنی."
+    );
+
+}
+
+
+function showAbout() {
+
+    alert(
+        "🇮🇷 Iranian Discord\n\n" +
+        "A website dedicated to helping Discord users."
+    );
+
+}
+
+
+function showSupport() {
+
+    alert(
+        "🎧 Support\n\n" +
+        "برای دریافت راهنمایی درباره Discord از Chat AI استفاده کن."
+    );
+
+}
+
+</script>
 
 </body>
 </html>
