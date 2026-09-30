@@ -894,6 +894,17 @@ body::after {
   .guide-shot{min-height:280px}
 }
 
+
+/* ABOUT US CARD */
+.about-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.78);backdrop-filter:blur(10px);z-index:10002;padding:18px}
+.about-card{width:min(760px,94%);padding:34px;background:rgba(10,12,30,.98);border:1px solid rgba(88,101,242,.65);border-radius:25px;box-shadow:0 0 55px rgba(88,101,242,.4);animation:aboutOpen .3s ease;text-align:center}
+@keyframes aboutOpen{from{opacity:0;transform:scale(.88) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.about-card h2{color:#5865F2;margin:0 0 24px;text-shadow:0 0 12px #5865F2}
+.about-text{padding:22px;margin:14px 0;border-radius:18px;background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.25);line-height:2;font-size:17px}
+.about-text.fa{direction:rtl;text-align:right}
+.about-text.en{direction:ltr;text-align:left}
+.about-close{margin-top:12px;padding:11px 30px;border:0;border-radius:12px;background:#5865F2;color:#fff;cursor:pointer;font-size:15px}
+.about-close:hover{filter:brightness(1.12)}
 </style>
 </head>
 
@@ -1208,6 +1219,24 @@ body::after {
     </div>
 
     <button class="guide-close" onclick="closeGuide()">بستن راهنما</button>
+  </div>
+</div>
+
+<!-- ABOUT US -->
+<div class="about-overlay" id="aboutOverlay">
+  <div class="about-card">
+    <h2><i class="fas fa-circle-info"></i> About Us</h2>
+    <div class="about-text fa">
+      <b>درباره ما</b><br><br>
+      سایت <b>Iranian Discord</b> توسط یک توسعه‌دهنده دیسکورد و سایت به نام <b>hoseinzp7</b> می‌باشد.<br>
+      این سایت تلاش دارد برای ایرانیان تمام جهان و مردمان غیرایرانی، تجربه‌ای زیبا از پلتفرم Discord داشته باشند.
+    </div>
+    <div class="about-text en">
+      <b>About Us</b><br><br>
+      The <b>Iranian Discord</b> website is developed by a Discord and web developer named <b>hoseinzp7</b>.<br>
+      This website aims to provide Iranians around the world, as well as non-Iranian users, with a beautiful experience of the Discord platform.
+    </div>
+    <button class="about-close" onclick="closeAbout()">بستن</button>
   </div>
 </div>
 
@@ -2330,12 +2359,11 @@ function closeGuide() {
 
 
 function showAbout() {
+    document.getElementById("aboutOverlay").style.display = "flex";
+}
 
-    alert(
-        "🇮🇷 Iranian Discord\n\n" +
-        "A website dedicated to helping Discord users."
-    );
-
+function closeAbout() {
+    document.getElementById("aboutOverlay").style.display = "none";
 }
 
 
