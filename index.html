@@ -690,6 +690,15 @@ body::after {
 
 }
 
+
+/* SHOP CARD */
+.shop-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);z-index:10000}
+.shop-card{width:min(520px,92%);padding:32px;background:rgba(10,12,30,.98);border:1px solid rgba(88,101,242,.65);border-radius:25px;box-shadow:0 0 50px rgba(88,101,242,.4);text-align:center;animation:shopOpen .3s ease}
+@keyframes shopOpen{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.shop-card h2{color:#5865F2;margin-bottom:24px;text-shadow:0 0 12px #5865F2}
+.shop-product{padding:18px;margin:12px 0;border-radius:15px;background:rgba(88,101,242,.1);border:1px solid rgba(88,101,242,.35)}
+.shop-product h3{margin:0 0 8px;font-size:20px}.shop-price{margin:0;color:#43ff88;font-size:18px;font-weight:bold}
+.shop-close{margin-top:18px;padding:11px 28px;border:0;border-radius:12px;background:#5865F2;color:#fff;cursor:pointer;font-size:15px}
 </style>
 </head>
 
@@ -869,6 +878,16 @@ body::after {
 
 
 
+<!-- SHOP -->
+<div class="shop-overlay" id="shopOverlay">
+  <div class="shop-card">
+    <h2><i class="fas fa-store"></i> فروشگاه</h2>
+    <div class="shop-product"><h3>ساخت سرور دیسکورد</h3><p class="shop-price">قیمت: 180T</p></div>
+    <div class="shop-product"><h3>ساخت بات دیسکورد</h3><p class="shop-price">قیمت: 180T</p></div>
+    <button class="shop-close" onclick="closeShop()">بستن</button>
+  </div>
+</div>
+
 <!-- =====================================================
      CHAT AI
 ===================================================== -->
@@ -988,9 +1007,8 @@ body::after {
 
 
 <script>
-function openShop() {
-    alert("Shop");
-}
+function openShop() { document.getElementById("shopOverlay").style.display = "flex"; }
+function closeShop() { document.getElementById("shopOverlay").style.display = "none"; }
 
 
 function openCommunity() {
