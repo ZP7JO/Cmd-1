@@ -2002,3 +2002,124 @@ function showSupport() {
 
 </body>
 </html>
+<!-- دکمه Shop داخل Menu -->
+<button onclick="openShop()">
+  <i class="fas fa-store"></i>
+  Shop
+</button>
+
+
+<!-- Shop Card -->
+<div id="shopCard" class="shop-card">
+
+  <div class="shop-content">
+
+    <h2>
+      <i class="fas fa-store"></i>
+      Shop
+    </h2>
+
+    <p>Welcome to our Shop 🛒</p>
+
+    <button class="shop-item">
+      <i class="fa-solid fa-gem"></i>
+      Nitro Purchase
+    </button>
+
+    <button class="shop-item">
+      <i class="fa-solid fa-server"></i>
+      Server Creation
+    </button>
+
+    <button class="shop-item">
+      <i class="fa-solid fa-robot"></i>
+      Bot Creation
+    </button>
+
+    <button class="shop-close" onclick="closeShop()">
+      Close
+    </button>
+
+  </div>
+
+</div>
+
+
+<style>
+.shop-card {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  max-width: 90%;
+  padding: 35px;
+  background: rgba(10,10,20,.97);
+  border: 1px solid #5865F2;
+  border-radius: 22px;
+  box-shadow: 0 0 40px rgba(88,101,242,.6);
+  z-index: 9999;
+  text-align: center;
+}
+
+.shop-content h2 {
+  margin-top: 0;
+  color: #5865F2;
+  font-size: 30px;
+  text-shadow: 0 0 12px #5865F2;
+}
+
+.shop-content p {
+  opacity: .7;
+  margin-bottom: 20px;
+}
+
+.shop-item {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #5865F2;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.shop-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 20px rgba(88,101,242,.7);
+}
+
+.shop-item i {
+  margin-right: 8px;
+}
+
+.shop-close {
+  margin-top: 15px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+}
+
+.shop-close:hover {
+  background: #333;
+}
+</style>
+
+
+<script>
+function openShop() {
+  document.getElementById("shopCard").style.display = "block";
+}
+
+function closeShop() {
+  document.getElementById("shopCard").style.display = "none";
+}
+</script>
