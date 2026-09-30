@@ -905,6 +905,32 @@ body::after {
 .about-text.en{direction:ltr;text-align:left}
 .about-close{margin-top:12px;padding:11px 30px;border:0;border-radius:12px;background:#5865F2;color:#fff;cursor:pointer;font-size:15px}
 .about-close:hover{filter:brightness(1.12)}
+
+/* SUPPORT TICKET */
+.support-overlay{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);z-index:10003;padding:18px}
+.support-card{width:min(760px,95%);max-height:90vh;overflow:auto;padding:30px;background:linear-gradient(145deg,rgba(16,18,38,.99),rgba(8,10,24,.99));border:1px solid rgba(88,101,242,.7);border-radius:26px;box-shadow:0 0 65px rgba(88,101,242,.35);animation:supportOpen .3s ease}
+@keyframes supportOpen{from{opacity:0;transform:translateY(25px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+.support-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:24px}
+.support-head h2{margin:0;color:#fff;font-size:25px}
+.support-head h2 i{color:#5865F2;margin-right:8px}
+.support-sub{margin:-14px 0 24px;color:#aeb4d0;line-height:1.8}
+.ticket-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ticket-field{display:flex;flex-direction:column;gap:8px}
+.ticket-field.full{grid-column:1/-1}
+.ticket-field label{color:#dfe3ff;font-size:14px;font-weight:700}
+.ticket-field input,.ticket-field select,.ticket-field textarea{width:100%;box-sizing:border-box;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.055);color:#fff;border-radius:13px;padding:13px 14px;outline:none;font:inherit;transition:.2s}
+.ticket-field input:focus,.ticket-field select:focus,.ticket-field textarea:focus{border-color:#5865F2;box-shadow:0 0 0 3px rgba(88,101,242,.13)}
+.ticket-field select option{background:#11142b;color:#fff}
+.ticket-field textarea{min-height:145px;resize:vertical}
+.ticket-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:22px}
+.ticket-btn{border:0;border-radius:12px;padding:12px 22px;cursor:pointer;font-weight:700;font-size:14px}
+.ticket-send{background:#5865F2;color:#fff;box-shadow:0 8px 25px rgba(88,101,242,.25)}
+.ticket-send:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.ticket-close{background:rgba(255,255,255,.08);color:#fff}
+.ticket-close:hover{background:rgba(255,255,255,.13)}
+.ticket-note{margin-top:18px;padding:12px 14px;border-radius:12px;background:rgba(88,101,242,.08);border:1px solid rgba(88,101,242,.2);color:#aeb4d0;font-size:13px;line-height:1.7}
+@media(max-width:620px){.ticket-grid{grid-template-columns:1fr}.ticket-field.full{grid-column:auto}.support-card{padding:22px}.support-actions{flex-direction:column}}
+
 </style>
 </head>
 
@@ -1237,6 +1263,62 @@ body::after {
       This website aims to provide Iranians around the world, as well as non-Iranian users, with a beautiful experience of the Discord platform.
     </div>
     <button class="about-close" onclick="closeAbout()">بستن</button>
+  </div>
+</div>
+
+
+<!-- SUPPORT TICKET -->
+<div class="support-overlay" id="supportOverlay">
+  <div class="support-card">
+    <div class="support-head">
+      <h2><i class="fas fa-headset"></i> پشتیبانی / Support</h2>
+    </div>
+
+    <p class="support-sub">
+      مشکل یا سوالی داری؟ یک تیکت برای تیم پشتیبانی ارسال کن تا درخواستت بررسی شود.
+      <br>
+      Have a question or issue? Send a support ticket and our team can review your request.
+    </p>
+
+    <div class="ticket-grid">
+      <div class="ticket-field">
+        <label for="ticketName">نام / Name</label>
+        <input id="ticketName" type="text" placeholder="نام شما">
+      </div>
+
+      <div class="ticket-field">
+        <label for="ticketContact">راه ارتباطی / Contact</label>
+        <input id="ticketContact" type="text" placeholder="Discord ID یا ایمیل">
+      </div>
+
+      <div class="ticket-field full">
+        <label for="ticketSubject">موضوع / Subject</label>
+        <select id="ticketSubject">
+          <option value="">موضوع درخواست را انتخاب کنید</option>
+          <option>مشکل در سایت / Website Issue</option>
+          <option>مشکل در سرویس / Service Issue</option>
+          <option>گزارش باگ / Bug Report</option>
+          <option>پیشنهاد / Suggestion</option>
+          <option>سایر / Other</option>
+        </select>
+      </div>
+
+      <div class="ticket-field full">
+        <label for="ticketMessage">توضیحات / Message</label>
+        <textarea id="ticketMessage" placeholder="مشکل یا درخواست خود را کامل توضیح دهید..."></textarea>
+      </div>
+    </div>
+
+    <div class="ticket-actions">
+      <button class="ticket-btn ticket-close" onclick="closeSupport()">بستن</button>
+      <button class="ticket-btn ticket-send" onclick="submitTicket()">
+        <i class="fas fa-paper-plane"></i> ارسال تیکت
+      </button>
+    </div>
+
+    <div class="ticket-note">
+      💡 برای پاسخ سریع‌تر، Discord ID یا راه ارتباطی درست خود را وارد کنید.
+    </div>
   </div>
 </div>
 
