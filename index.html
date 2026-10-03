@@ -2462,3 +2462,265 @@ function showSupport() {
 
 </body>
 </html>
+```html
+<!-- SUPPORT TICKET -->
+<style>
+.support-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0, 0, 0, .82);
+  backdrop-filter: blur(12px);
+  z-index: 10003;
+}
+
+.support-card {
+  width: min(760px, 95%);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 30px;
+  color: white;
+  background: linear-gradient(145deg, #101226, #080a18);
+  border: 1px solid rgba(88, 101, 242, .7);
+  border-radius: 26px;
+  box-shadow: 0 0 55px rgba(88, 101, 242, .35);
+  animation: supportOpen .3s ease;
+}
+
+@keyframes supportOpen {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.support-card h2 {
+  color: #fff;
+  margin-top: 0;
+}
+
+.support-card h2 i {
+  color: #5865F2;
+}
+
+.support-sub {
+  color: #aeb4d0;
+  line-height: 1.9;
+  margin-bottom: 24px;
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.ticket-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ticket-field.full {
+  grid-column: 1 / -1;
+}
+
+.ticket-field label {
+  color: #dfe3ff;
+  font-weight: bold;
+}
+
+.ticket-field input,
+.ticket-field select,
+.ticket-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px;
+  border: 1px solid #303451;
+  border-radius: 12px;
+  background: #15182e;
+  color: white;
+  font: inherit;
+  outline: none;
+}
+
+.ticket-field input:focus,
+.ticket-field select:focus,
+.ticket-field textarea:focus {
+  border-color: #5865F2;
+}
+
+.ticket-field select option {
+  background: #15182e;
+  color: white;
+}
+
+.ticket-field textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.ticket-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.ticket-btn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ticket-send {
+  background: #5865F2;
+  color: white;
+}
+
+.ticket-close {
+  background: #292c43;
+  color: white;
+}
+
+.ticket-note {
+  margin-top: 18px;
+  color: #aeb4d0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+@media (max-width: 620px) {
+  .ticket-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-field.full {
+    grid-column: auto;
+  }
+
+  .support-card {
+    padding: 22px;
+  }
+}
+</style>
+
+<!-- TICKET CARD -->
+<div class="support-overlay" id="supportOverlay">
+  <div class="support-card">
+
+    <h2>
+      <i class="fas fa-headset"></i>
+      پشتیبانی / Support
+    </h2>
+
+    <p class="support-sub">
+      مشکلی داری؟ فرم زیر رو پر کن.
+      <br>
+      Have a question or issue? Fill out the form below.
+    </p>
+
+    <div class="ticket-grid">
+
+      <div class="ticket-field">
+        <label for="ticketName">نام / Name</label>
+        <input id="ticketName" type="text"
+               placeholder="نام شما">
+      </div>
+
+      <div class="ticket-field">
+        <label for="ticketContact">راه ارتباطی / Contact</label>
+        <input id="ticketContact" type="text"
+               placeholder="Discord ID یا ایمیل">
+      </div>
+
+      <div class="ticket-field full">
+        <label for="ticketSubject">موضوع / Subject</label>
+        <select id="ticketSubject">
+          <option value="">انتخاب موضوع</option>
+          <option>مشکل سایت / Website Issue</option>
+          <option>گزارش باگ / Bug Report</option>
+          <option>پیشنهاد / Suggestion</option>
+          <option>سایر / Other</option>
+        </select>
+      </div>
+
+      <div class="ticket-field full">
+        <label for="ticketMessage">توضیحات / Message</label>
+        <textarea id="ticketMessage"
+          placeholder="توضیحات درخواستت رو بنویس..."></textarea>
+      </div>
+
+    </div>
+
+    <div class="ticket-actions">
+      <button class="ticket-btn ticket-close"
+              onclick="closeSupport()">
+        بستن
+      </button>
+
+      <button class="ticket-btn ticket-send"
+              onclick="submitTicket()">
+        <i class="fas fa-paper-plane"></i>
+        ارسال تیکت
+      </button>
+    </div>
+
+    <div class="ticket-note">
+      💡 اطلاعات تماس درست وارد کن تا امکان پاسخ‌گویی داشته باشیم.
+    </div>
+
+  </div>
+</div>
+
+<script>
+function showSupport() {
+  document.getElementById("supportOverlay").style.display = "flex";
+}
+
+function closeSupport() {
+  document.getElementById("supportOverlay").style.display = "none";
+}
+
+function submitTicket() {
+  const name = document.getElementById("ticketName").value.trim();
+  const contact = document.getElementById("ticketContact").value.trim();
+  const subject = document.getElementById("ticketSubject").value;
+  const message = document.getElementById("ticketMessage").value.trim();
+
+  if (!name || !contact || !subject || !message) {
+    alert("لطفاً تمام بخش‌های تیکت را کامل کن.");
+    return;
+  }
+
+  alert(
+    "فرم تیکت تکمیل شد ✅\n\n" +
+    "نام: " + name + "\n" +
+    "موضوع: " + subject + "\n\n" +
+    "برای ارسال واقعی، باید سیستم پشتیبانی به سایت متصل شود."
+  );
+}
+</script>
+```
+
+**اتصال به منو:** دکمه Support سایتت باید این کد رو داشته باشه:
+
+```html
+<button onclick="showSupport()">
+  <i class="fas fa-headset"></i>
+  Support
+</button>
+```
+
+**توجه:** این نسخه فرم رو باز می‌کنه و اطلاعات خالی رو بررسی می‌کنه؛ هنوز تیکت واقعاً ارسال یا ذخیره نمی‌شه. برای دریافت واقعی تیکت‌ها باید یک سرویس پشتیبانی به سایت وصل بشه.
